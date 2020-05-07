@@ -65,14 +65,30 @@ if ! [[ "$PROMPT_COMMAND" =~ "*AppendGoPath*" ]]; then
   export PROMPT_COMMAND="AppendGoPath; $PROMPT_COMMAND"
 fi
 
-# Loads pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+# Try loading ASDF from the regular home dir location
+LoadASDF() {
+  if [ -f "$HOME/.asdf/asdf.sh" ]; then
+    . "$HOME/.asdf/asdf.sh"
+  elif which brew >/dev/null &&
+    BREW_DIR="$(dirname `which brew`)/.." &&
+    [ -f "$BREW_DIR/opt/asdf/asdf.sh" ]; then
+    . "$BREW_DIR/opt/asdf/asdf.sh"
+  fi
+}
+
+LoadASDF
+
+# Setting up ASDF if it doesn't exist
+if ! command -v asdf > /dev/null 2>&1; then
+  echo 'Installing ASDF. See https://asdf-vm.com for more info.'
+  {
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+    cd ~/.asdf
+    git checkout "$(git describe --abbrev=0 --tags)"
+    cd
+  } &> /dev/null
+  LoadASDF
 fi
 
-# Loads NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Mute ruby 2.7 deprecation warnings
+export RUBYOPT='-W:no-deprecated -W:no-experimental'
