@@ -2,7 +2,8 @@
 # set -g default-terminal 'tmux-256color'
 
 # enable terminal compatibility
-set -ga terminal-overrides ",xterm-256color:Tc"
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",*256color:Tc"
 
 # Set 0 delay when ECS is pressed in tmux
 set escape-time 0
