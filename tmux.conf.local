@@ -17,15 +17,9 @@ bind-key down  split-window -v
 # Clear screen using Ctrl-k (after prefix)
 bind-key -r C-k send-keys -R \; send-keys C-l \; clear-history
 
-# Use Alt-vim keys without prefix to switch pane
-bind -n M-h select-pane -L
-bind -n M-j select-pane -D
-bind -n M-k select-pane -U
-bind -n M-l select-pane -R
-
 # Use Ctrl-Shift-Arrow (Left, Right) to move window left and right
-bind-key -n C-S-Left swap-window -t -1
-bind-key -n C-S-Right swap-window -t +1
+bind -n C-S-Left swap-window -t -1
+bind -n C-S-Right swap-window -t +1
 
 # tmux status bar
 set -g status-interval 60
@@ -41,6 +35,6 @@ set -g status-fg 'colour250'
 set -g mouse on
 
 # Mimic Vim selection-yank
-bind-key -T copy-mode-vi v send-keys -X begin-selection
-bind-key -T copy-mode-vi y send-keys -X copy-selection
-bind-key -T copy-mode-ki r send-keys -X rectangle-selection
+bind -Tcopy-mode-vi v send -X begin-selection
+bind -Tcopy-mode-vi y send -X copy-selection
+bind -Tcopy-mode-ki r send -X rectangle-selection
