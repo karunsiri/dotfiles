@@ -3,15 +3,12 @@
 " Disable unused plugins
 UnPlug 'vim-elixir'
 UnPlug 'vim-slim'
-" UnPlug 'vim-go'
+UnPlug 'vim-go'
 
-Plug 'ervandew/supertab'
-" Plug 'mxw/vim-jsx', { 'for': 'jsx' }
-Plug 'isRuslan/vim-es6', { 'for': ['javascript'] }
 Plug 'vim-airline/vim-airline'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdtree'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Yggdroot/indentLine'
 Plug 'easymotion/vim-easymotion'
 Plug 'karunsiri/vim-delete-hidden-buffers'
@@ -21,8 +18,9 @@ Plug 'chrisbra/csv.vim'
 " Plug 'chr4/nginx.vim'
 " Plug 'ekalinin/Dockerfile.vim'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'roman/golden-ratio'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'mhartington/oceanic-next'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'ryanoasis/vim-devicons'

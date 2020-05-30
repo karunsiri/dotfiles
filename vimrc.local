@@ -33,6 +33,25 @@ nunmap [r
 nnoremap <Leader>p :ALENextWrap<CR>
 nnoremap <Leader>. :ALEPreviousWrap<CR>
 
+" Set rubocop executable for ale
+let g:ale_ruby_rubocop_executable = 'bin/rubocop'
+
+" Go to symbol definition
+nmap gd <Plug>(coc-definition)
+
+" Rename all symbol references
+nmap <F2> <Plug>(coc-rename)
+
+" Show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " Set tab color
 hi TabLine ctermfg=0 ctermbg=250
 hi TabLineFill ctermbg=250
@@ -96,6 +115,12 @@ inoremap <expr> <C-j> pumvisible() ? '<C-n>' : '<C-j>'
 inoremap ,, <Esc>
 
 autocmd FileType haml setlocal foldmethod=indent
+autocmd FileType eruby.yaml setlocal foldmethod=indent
 
-" Set rubocop executable
-let g:ale_ruby_rubocop_executable = 'bin/rubocop'
+" Install coc extensions
+let g:coc_global_extensions = [
+  \   'coc-tsserver',
+  \   'coc-json',
+  \   'coc-eslint',
+  \   'coc-css',
+  \ ]
