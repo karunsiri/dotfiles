@@ -11,13 +11,16 @@ GIT_PS1_SHOWUPSTREAM="auto"
 
 # Load git prompt
 [[ -f ~/.addons/git-prompt.sh ]] && source ~/.addons/git-prompt.sh
-[[ -f ~/.addons/git-completion.bash ]] && source ~/.addons/git-completion.bash
 [[ -f ~/.addons/z.sh ]] && source ~/.addons/z.sh
 
-if [ $(id -u) -eq 0 ]; then
-  PS1="${COLOR_RED}\u${COLOR_BLUE}:\w${COLOR_BLACK}\$(__git_ps1) # "
-else
-  PS1="${COLOR_RED}\u${COLOR_BLUE}:\w${COLOR_BLACK}\$(__git_ps1) \$ "
+if [ $(echo $0) = "-bash" ]; then
+  [ -f ~/.addons/git-completion.bash ] && source ~/.addons/git-completion.bash
+
+  if [ $(id -u) -eq 0 ]; then
+    PS1="${COLOR_RED}\u${COLOR_BLUE}:\w${COLOR_BLACK}\$(__git_ps1) # "
+  else
+    PS1="${COLOR_RED}\u${COLOR_BLUE}:\w${COLOR_BLACK}\$(__git_ps1) \$ "
+  fi
 fi
 
 # Store last 1000 commands, for fzf's sake
@@ -44,26 +47,6 @@ fi
 
 # fzf Ctrl-T options
 export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# Set GOPATH automatically when changing into it by checking for .gopath file
-# .gopath file must be inside a folder you want to add to GOPATH
-AppendGoPath() {
-  if [ -f "$PWD/.gopath" ]; then
-    if ! [[ "$GOPATH" =~ "$PWD" ]]; then
-      echo "Setting $GOPATH"
-      export GOPATH=$PWD:$GOPATH
-    fi
-  fi
-}
-
-# Include AppendGoPath if PROMPT_COMMAND does not already have it
-if ! [[ "$PROMPT_COMMAND" =~ "*AppendGoPath*" ]]; then
-  export PREV_PROMPT_COMMAND=$PROMPT_COMMAND
-  export PROMPT_COMMAND="AppendGoPath; $PROMPT_COMMAND"
-fi
 
 # Try loading ASDF from the regular home dir location
 LoadASDF() {

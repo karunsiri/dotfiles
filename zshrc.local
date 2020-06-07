@@ -1,0 +1,2 @@
+[ -f ~/.bash_customs ] && source ~/.bash_customs
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
