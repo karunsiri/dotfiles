@@ -45,8 +45,9 @@ else
   export ANDROID_HOME=/opt/Android/sdk
 fi
 
-# fzf Ctrl-T options
-export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
+# fzf options
+export FZF_DEFAULT_OPTS='--no-height --no-reverse'
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 
 # Try loading ASDF from the regular home dir location
 LoadASDF() {
