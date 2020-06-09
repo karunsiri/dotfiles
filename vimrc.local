@@ -23,9 +23,9 @@ set nofoldenable
 set foldlevel=1
 set noshowmode
 
+" Default colorscheme settings
 let g:seoul256_background = 236
-" colorscheme seoul256
-colorscheme OceanicNext
+colorscheme seoul256
 
 " Ale linting error jump
 nunmap ]r

@@ -21,6 +21,9 @@ Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'roman/golden-ratio'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'mhartington/oceanic-next'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'ryanoasis/vim-devicons'
+
+" Color schemes
+Plug 'junegunn/seoul256.vim'
+Plug 'mhartington/oceanic-next'
