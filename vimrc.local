@@ -56,10 +56,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Set tab color
-hi TabLine ctermfg=0 ctermbg=250
-hi TabLineFill ctermbg=250
-
 " Easier tab navigation
 nnoremap GT :tabp<CR>
 nnoremap <Leader>n :tabnew<CR>
@@ -95,12 +91,13 @@ let g:airline#extensions#default#layout = [
   \   ['x', 'z', 'error', 'warning']
   \ ]
 
-let g:airline_theme='oceanicnext'
-
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 0
+let airline#extensions#tabline#show_buffers = 0
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.linenr = ''
 let g:airline_section_z = airline#section#create(['%3p%% ', 'linenr', ' '.':%3v'])
