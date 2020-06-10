@@ -92,6 +92,8 @@ function! s:CycleColor(direction)
     let clrschm = substitute(nextfile, '^.*[/\\]\([^/\\]\+\)\.vim$', '\1', '')
     " In case the color scheme does not set this variable, empty it so we can tell.
     unlet! g:colors_name
+
+    exec 'set bg=dark'
     exec 'colorscheme '.clrschm
     redraw
     if exists("g:colors_name")

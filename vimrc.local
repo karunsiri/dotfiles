@@ -23,7 +23,7 @@ set nofoldenable
 set foldlevel=1
 set noshowmode
 
-" Default colorscheme settings
+" Color scheme settings
 let g:seoul256_background = 236
 let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'soft'
