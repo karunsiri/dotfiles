@@ -25,7 +25,11 @@ set noshowmode
 
 " Default colorscheme settings
 let g:seoul256_background = 236
-colorscheme seoul256
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme gruvbox
 
 " Ale linting error jump
 nunmap ]r
