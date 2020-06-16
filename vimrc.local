@@ -8,6 +8,7 @@ set nowrap
 set softtabstop=2
 set autoindent
 set formatoptions-=t
+set cursorline
 
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
