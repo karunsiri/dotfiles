@@ -27,4 +27,4 @@ Plug 'ryanoasis/vim-devicons'
 " Color schemes
 Plug 'junegunn/seoul256.vim'
 Plug 'mhartington/oceanic-next'
-Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
