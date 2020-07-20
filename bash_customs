@@ -76,3 +76,9 @@ fi
 
 # Mute ruby 2.7 deprecation warnings
 export RUBYOPT='-W:no-deprecated -W:no-experimental'
+
+# Install Terraform autocomplete if terraform is available
+if command -v terraform > /dev/null 2>&1; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C $(which terraform) terraform
+fi
