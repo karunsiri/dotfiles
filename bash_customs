@@ -13,7 +13,7 @@ GIT_PS1_SHOWUPSTREAM="auto"
 [[ -f ~/.addons/git-prompt.sh ]] && source ~/.addons/git-prompt.sh
 [[ -f ~/.addons/z.sh ]] && source ~/.addons/z.sh
 
-if [ $(echo $0) = "-bash" ]; then
+if [[ $(echo $SHELL) =~ "bash" ]]; then
   [ -f ~/.addons/git-completion.bash ] && source ~/.addons/git-completion.bash
 
   if [ $(id -u) -eq 0 ]; then
