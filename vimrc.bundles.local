@@ -18,7 +18,7 @@ Plug 'chrisbra/csv.vim'
 " Plug 'chr4/nginx.vim'
 " Plug 'ekalinin/Dockerfile.vim'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
-Plug 'roman/golden-ratio'
+Plug 'karunsiri/vim-golden-ratio', { 'branch': 'minimum-width' }
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
