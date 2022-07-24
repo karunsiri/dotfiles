@@ -38,7 +38,7 @@ g.coc_global_extensions = {
 }
 
 -- Stick <C-P> (FZF) result at the 50% bottom portion of the screen
-g.fzf_layout = { down = '50%' }
+g.fzf_layout = { down = '70%' }
 g.rainbow_active = 1
 g.rainbow_conf = {
   guifgs = { 'coral', 'aquamarine3', 'MediumPurple3', 'burlywood3' },

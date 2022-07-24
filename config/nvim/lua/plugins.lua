@@ -11,7 +11,6 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'dense-analysis/ale'
   use 'joshdick/onedark.vim'
   use 'vim-airline/vim-airline'
 
@@ -26,7 +25,7 @@ return require('packer').startup(function()
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
     use '/usr/local/opt/fzf'
   else
-    use { 'junegunn/fzf', { dir='~/.fzf', run='./install --all' } }
+    use { 'junegunn/fzf', run='./install --all' }
   end
 
   use 'junegunn/fzf.vim'
