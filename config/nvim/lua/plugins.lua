@@ -45,28 +45,24 @@ return require('packer').startup(function()
   use 'vim-ruby/vim-ruby'
   use 'vim-scripts/tComment'
   use 'dense-analysis/ale'
-  use 'preservim/nerdtree'
-  use 'Xuyuanp/nerdtree-git-plugin'
-  use 'tiagofumo/vim-nerdtree-syntax-highlight'
+  -- use 'preservim/nerdtree'
+  -- use 'Xuyuanp/nerdtree-git-plugin'
+  -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
   use 'Yggdroot/indentLine'
   use 'easymotion/vim-easymotion'
   use 'karunsiri/vim-delete-hidden-buffers'
   use 'Konfekt/FastFold'
   use 'chrisbra/csv.vim'
-  use {
-    'python-mode/python-mode',
-    ft = { 'python' },
-    branch = 'develop',
-  }
+  use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
   use 'leafgarland/typescript-vim'
   use 'peitalin/vim-jsx-typescript'
   use { 'neoclide/coc.nvim', branch = 'release' }
-  use 'ryanoasis/vim-devicons'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
   use 'rust-lang/rust.vim'
+  use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
 
   if packer_bootstrap then
     require('packer').sync()

@@ -1,17 +1,17 @@
 local map = require('utils').map
 
 -- Quicker window movement
-map('n', '<C-j>', '<C-w>j', { noremap = truee })
-map('n', '<C-k>', '<C-w>k', { noremap = truee })
-map('n', '<C-h>', '<C-w>h', { noremap = truee })
-map('n', '<C-l>', '<C-w>l', { noremap = truee })
+map('n', '<C-j>', '<C-w>j', { noremap = true })
+map('n', '<C-k>', '<C-w>k', { noremap = true })
+map('n', '<C-h>', '<C-w>h', { noremap = true })
+map('n', '<C-l>', '<C-w>l', { noremap = true })
 
 map('n', '<Leader><Up>', ':vertical resize +10<CR>', { noremap = true, silent = true })
 map('n', '<Leader><Down>', ':vertical resize -10<CR>', { noremap = true, silent = true })
 map('n', '<Leader>gb', ':Git blame<CR>', { noremap = true, silent = true })
 map('n', '<Leader>gs', ':Git status<CR>', { noremap = true, silent = true })
-map('n', '<C-t><C-t>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
-map('n', '<C-t><C-f>', ':NERDTreeFind<CR>', { noremap = true, silent = true })
+map('n', '<C-t><C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+map('n', '<C-t><C-f>', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 map('n', '<Leader>w', ':w<CR>', { noremap = true })
 map('n', '<Leader>q', ':q<CR>', { noremap = true })
 map('n', '<Leader>bd', ':DeleteHiddenBuffers<CR>:echoe "Hidden Buffers Deleted"<CR>', { noremap = true, silent = true })
