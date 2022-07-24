@@ -51,7 +51,7 @@ o.swapfile = false
 -- Set default foldmethod. Not every syntax has folding set
 o.foldmethod = 'indent'
 o.foldnestmax = 10
-o.foldenable = true
+o.foldenable = false
 o.foldlevel = 1
 o.showmode = false
 
