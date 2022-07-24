@@ -1,0 +1,75 @@
+# Git
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glg='git log --stat --color'
+alias glgp='git log --stat --color -p'
+alias glgg='git log --graph --color'
+alias glgga='git log --graph --decorate --all'
+alias glgm='git log --graph --max-count=10'
+alias glo='git log --oneline --decorate --color'
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
+alias glog='git log --oneline --decorate --color --graph'
+alias gbc="git remote prune origin && git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -D"
+alias gfp="git push --force-with-lease"
+
+# Easy navigation
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Shorthand
+alias be='bundle exec'
+alias rails='be rails'
+alias rake='be rake'
+alias rspec='be rspec'
+alias tmux='TERM=xterm-256color tmux -2 -u'
+alias grunt='npx grunt'
+alias yarn='npx yarn'
+
+# Rspec
+alias parallel_prepare='be rake parallel:drop parallel:create parallel:prepare parallel:migrate'
+
+# Codeclimate
+alias codeclimate='sudo docker run -it --rm --env CODECLIMATE_CODE="$PWD" --volume "$PWD":/code --volume /var/run/docker.sock:/var/run/docker.sock --volume /tmp/cc:/tmp/cc codeclimate/codeclimate'
+
+# Mac-like utility
+if ! command -v pbcopy > /dev/null 2>&1; then
+  alias pbcopy='xclip -selection clipboard'
+fi
+
+if ! command -v pbpaste > /dev/null 2>&1; then
+  alias pbpaste='xclip -selection clipboard -o'
+fi
+
+# FluxCD
+alias git-reconcile='flux reconcile source git flux-system'
+alias reconcile='flux reconcile kustomization flux-system'
+
+if [ -x "$(command -v kubectl)" ]; then
+  source <(kubectl completion zsh)
+  alias k=kubectl
+fi
+
+if [ -x "$(command -v flux)" ]; then
+  source <(flux completion zsh)
+fi
+
+# DevOps shells
+LoadDevOpsEnvironment() {
+  local environment=$1
+  export KUBECONFIG="$HOME/.kube/verumex-${environment}"
+  export AWS_PROFILE="verumex-${environment}"
+  export AWS_REGION=us-east-1
+}
+
+LoadManagementDevOpsEnvironment() {
+  LoadDevOpsEnvironment 'management'
+  export AWS_REGION=eu-central-1
+}
+
+LoadStagingDevOpsEnvironment() {
+  LoadDevOpsEnvironment 'staging'
+}
+
+LoadProductionDevOpsEnvironment() {
+  LoadDevOpsEnvironment 'production'
+}

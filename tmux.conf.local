@@ -1,0 +1,40 @@
+# improve colors
+# set -g default-terminal 'tmux-256color'
+
+# enable terminal compatibility
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",*256color:Tc"
+
+# Set 0 delay when ECS is pressed in tmux
+set escape-time 0
+
+# Split window to the right
+bind-key right split-window -h
+
+# Split window to the bottom
+bind-key down  split-window -v
+
+# Clear screen using Ctrl-k (after prefix)
+bind-key -r C-k send-keys -R \; send-keys C-l \; clear-history
+
+# Use Ctrl-Shift-Arrow (Left, Right) to move window left and right
+bind -n C-S-Left swap-window -t -1\; select-window -t -1
+bind -n C-S-Right swap-window -t +1\; select-window -t +1
+
+# tmux status bar
+set -g status-interval 60
+set -g status-left '#[fg=colour178](#S) #(whoami)| '
+set -g status-left-length 40
+set -g status-right '#[fg=colour216]%I:%M %p '
+
+# Set custom tmux colors
+set -g status-bg 'colour23'
+set -g status-fg 'colour250'
+
+# Enable mouse scrolling, drag to resize, etc.
+set -g mouse on
+
+# Mimic Vim selection-yank
+bind -Tcopy-mode-vi v send -X begin-selection
+bind -Tcopy-mode-vi y send -X copy-selection
+bind -Tcopy-mode-ki r send -X rectangle-selection
