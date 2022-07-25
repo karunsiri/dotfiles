@@ -12,6 +12,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use 'joshdick/onedark.vim'
+  use 'rakr/vim-one'
   use 'vim-airline/vim-airline'
 
   -- use {

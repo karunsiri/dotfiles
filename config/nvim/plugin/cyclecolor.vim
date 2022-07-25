@@ -1,127 +1,87 @@
-" cyclecolor.vim
-" cycle through available colorschemes
-"
-" Maintainer:   Marvin Renich <mrvn-vim@renich.org>
-" Version:  1.1
-" Last Change:  2006 Jul 18
+" Change the color scheme from a list of color scheme names.
+" Version 2010-09-12 from http://vim.wikia.com/wiki/VimTip341
+" Press key:
+"   F8                next scheme
+"   Shift-F8          previous scheme
+"   Alt-F8            random scheme
+" Set the list of color schemes used by the above (default is 'all'):
+"   :SetColors all              (all $VIMRUNTIME/colors/*.vim)
+"   :SetColors my               (names built into script)
+"   :SetColors blue slate ron   (these schemes)
+"   :SetColors                  (display current scheme names)
+" Set the current color scheme based on time of day:
+"   :SetColors now
+let loaded_setcolors = 1
+let s:mycolors = ['onedark', 'one']  " colorscheme names that we use to set color
+" let s:mycolors = []
 
-" Copyright 2005, 2006 Marvin Renich
-"
-" Redistribution and use, with or without modification, are permitted
-" provided that the following conditions are met:
-"
-"   1.  Redistributions in any form must retain the above copyright
-"       notice, this list of conditions and the following disclaimer.
-"   2.  The name of the author may not be used to endorse or promote
-"       products derived from this software without specific prior
-"       written permission.
-"
-" THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
-" IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-" WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-" DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
-" INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-" (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-" SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-" STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-" IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-" POSSIBILITY OF SUCH DAMAGE.
-
-" This script is inspired by a one-liner by Tim Chase on the vim@vim.org
-" mailing list in Message-ID: <42CAEC9F.7050001@thechases.com>.
-"
-" This script uses globpath to get all available colorschemes, not just
-" the ones in the $VIMRUNTIME/colors directory.  It also bases the next
-" colorscheme on the full path of the current one, not the g:colors_name
-" variable, which makes a difference if a script with the same
-" colors_name exists in more than one place on the runtime path.  It
-" also helps when the script does not set the colors_name correctly
-" (and there are some that do not).
-"
-" If the colors_name variable has changed since this script was last
-" run, it tries to find the first script with that base name and
-" continues the cycle from there.  If it cannot find the script, it
-" starts over from the beginning of the cycle.
-"
-" As the :colorscheme command does more than just :source the
-" appropriate script, I have stuck to using :colorscheme rather than
-" :source.  This has one drawback:  if there is more than one script
-" with the same name on the runtime path, only the first one will be
-" used, though this script will keep track of which colorscheme should
-" be next.
-"
-" I also avoided using vim 7 lists so this script can be used with
-" version 6.
-"
-" TODO:  Allow selecting the scheme from a list (like csExplorer.vim).
-"        Notification of same-named schemes in different directories.
-"        Allow blacklisting specific colorscheme files.
-
-let s:schemes = "\n".globpath(&rtp, "colors/*.vim")."\n"
-let s:currentfile = ""
-let s:currentname = ""
-
-function! s:CycleColor(direction)
-  if exists("g:colors_name") && g:colors_name != s:currentname
-    " The user must have selected a colorscheme manually; try
-    " to find it and choose the next one after it
-    let nextfile = substitute(s:schemes, '.*\n\([^\x0A]*[/\\]'.g:colors_name.'\.vim\)\n.*', '\1', '')
-    if nextfile == s:schemes
-      let s:currentfile = ""
-    else
-      let s:currentfile = nextfile
-    endif
-  endif
-
-  if a:direction >= 0
-    " Find the current file name, and select the next one.
-    " No substitution will take place if the current file is not
-    "   found or is the last in the list.
-    let nextfile = substitute(s:schemes, '.*\n'.s:currentfile.'\n\([^\x0A]\+\)\n.*', '\1', '')
-    " If the above worked, there will be no control chars in
-    "   nextfile, so this will not substitute; otherwise, this will
-    "   choose the first file in the list.
-    let nextfile = substitute(nextfile, '\n\+\([^\x0A]\+\)\n.*', '\1', '')
+" Set list of color scheme names that we will use, except
+" argument 'now' actually changes the current color scheme.
+function! s:SetColors(args)
+  if len(a:args) == 0
+    echo 'Current color scheme names:'
+    let i = 0
+    while i < len(s:mycolors)
+      echo '  '.join(map(s:mycolors[i : i+4], 'printf("%-14s", v:val)'))
+      let i += 5
+    endwhile
+  elseif a:args == 'all'
+    let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
+    let s:mycolors = uniq(sort(map(paths, 'fnamemodify(v:val, ":t:r")')))
+    echo 'List of colors set from all installed color schemes'
   else
-    let nextfile = substitute(s:schemes, '.*\n\([^\x0A]\+\)\n'.s:currentfile.'\n.*', '\1', '')
-    let nextfile = substitute(nextfile, '.*\n\([^\x0A]\+\)\n\+', '\1', '')
+    let s:mycolors = split(a:args)
+    echo 'List of colors set from argument (space-separated names)'
   endif
+endfunction
 
-  if nextfile != s:schemes
-    let clrschm = substitute(nextfile, '^.*[/\\]\([^/\\]\+\)\.vim$', '\1', '')
-    " In case the color scheme does not set this variable, empty it so we can tell.
-    unlet! g:colors_name
+command! -nargs=* SetColors call s:SetColors('<args>')
 
-    exec 'set bg=dark'
-    exec 'colorscheme '.clrschm
-    redraw
-    if exists("g:colors_name")
-      let s:currentname = g:colors_name
-      if clrschm != g:colors_name
-        " Let user know colorscheme did not set g:colors_name properly
-        echomsg 'colorscheme' clrschm 'set g:colors_name to' g:colors_name
-      endif
+" Set next/previous/random (how = 1/-1/0) color from our list of colors.
+" The 'random' index is actually set from the current time in seconds.
+" Global (no 's:') so can easily call from command line.
+function! NextColor(how)
+  call s:NextColor(a:how, 1)
+endfunction
+
+" Helper function for NextColor(), allows echoing of the color name to be
+" disabled.
+function! s:NextColor(how, echo_color)
+  if len(s:mycolors) == 0
+    call s:SetColors('all')
+  endif
+  if exists('g:colors_name')
+    let current = index(s:mycolors, g:colors_name)
+  else
+    let current = -1
+  endif
+  let missing = []
+  let how = a:how
+  for i in range(len(s:mycolors))
+    if how == 0
+      let current = localtime() % len(s:mycolors)
+      let how = 1  " in case random color does not exist
     else
-      let s:currentname = ""
-      echomsg 'colorscheme' clrschm 'did not set g:colors_name'
+      let current += how
+      if !(0 <= current && current < len(s:mycolors))
+        let current = (how>0 ? 0 : len(s:mycolors)-1)
+      endif
     endif
-    echo s:currentname.' ('.nextfile.')'
+    try
+      execute 'colorscheme '.s:mycolors[current]
+      break
+    catch /E185:/
+      call add(missing, s:mycolors[current])
+    endtry
+  endfor
+  redraw
+  if len(missing) > 0
+    echo 'Error: colorscheme not found:' join(missing)
   endif
-
-  let s:currentfile = nextfile
-
+  if (a:echo_color)
+    echo g:colors_name
+  endif
 endfunction
 
-function! s:CycleColorRefresh()
-  let s:schemes = "\n".globpath(&rtp, "colors/*.vim")."\n"
-endfunction
-
-command! CycleColorNext :call s:CycleColor(1)
-command! CycleColorPrev :call s:CycleColor(-1)
-command! CycleColorRefresh :call s:CycleColorRefresh()
-
-nnoremap <F10> :CycleColorNext<cr>
-nnoremap <F9> :CycleColorPrev<cr>
-
-" vi:set ai ts=4 sw=4 tw=0:
+nnoremap <F9> :call NextColor(-1)<CR>
+nnoremap <F10> :call NextColor(1)<CR>
