@@ -46,9 +46,6 @@ return require('packer').startup(function()
   use 'vim-ruby/vim-ruby'
   use 'vim-scripts/tComment'
   use 'dense-analysis/ale'
-  -- use 'preservim/nerdtree'
-  -- use 'Xuyuanp/nerdtree-git-plugin'
-  -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
   use 'Yggdroot/indentLine'
   use 'easymotion/vim-easymotion'
   use 'karunsiri/vim-delete-hidden-buffers'
@@ -64,6 +61,7 @@ return require('packer').startup(function()
   use 'luochen1990/rainbow'
   use 'rust-lang/rust.vim'
   use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
+  use 'akinsho/toggleterm.nvim'
 
   if packer_bootstrap then
     require('packer').sync()

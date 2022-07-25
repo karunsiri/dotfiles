@@ -26,9 +26,6 @@ map('n', '<Leader>l', ':TestLast<CR>', { noremap = true, silent = true })
 map('n', '<Leader>a', ':TestSuite<CR>', { noremap = true, silent = true })
 map('n', '<Leader>gt', ':TestVisit<CR>', { noremap = true, silent = true })
 
--- Run commands that require an interactive shell
-map('n', '<Leader>r', ':RunInInteractiveShell<Space>', { noremap = true })
-
 -- Ale linting error jump
 map('n', '<Leader>p', ':ALENextWrap<CR>', { noremap = true })
 map('n', '<Leader>.', ':ALEPreviousWrap<CR>', { noremap = true })

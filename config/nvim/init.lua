@@ -3,8 +3,8 @@ require('vim_options')
 require('keymaps')
 require('autocmds')
 require('plugins')
-
-vim.cmd('colorscheme onedark')
+require('user/colors')
+require('user/toggleterm')
 
 -- Set vim-airline section-z after plugin loads because the plugin function is
 -- being called.
