@@ -5,6 +5,9 @@ require('autocmds')
 require('plugins')
 require('user/colors')
 require('user/toggleterm')
+require('user/ale')
+require('user/pymode')
+-- require('user/lsp/ruby')
 
 -- Set vim-airline section-z after plugin loads because the plugin function is
 -- being called.

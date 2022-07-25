@@ -11,6 +11,9 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Configurations for Nvim LSP
+  use 'neovim/nvim-lspconfig'
+
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
   use 'vim-airline/vim-airline'
@@ -21,7 +24,6 @@ return require('packer').startup(function()
   -- }
   -- require('lualine').setup(require('configs/lualine'))
 
-  -- Define bundles via Github repos
   use 'christoomey/vim-run-interactive'
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
     use '/usr/local/opt/fzf'
