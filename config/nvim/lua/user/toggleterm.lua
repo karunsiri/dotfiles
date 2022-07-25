@@ -1,5 +1,5 @@
 require("toggleterm").setup({
-  open_mapping = [[<C-Space>]],
+  open_mapping = [[<C-z>]],
 })
 
 function _G.set_terminal_keymaps()

@@ -34,15 +34,9 @@ map('n', '<Leader>.', ':ALEPreviousWrap<CR>', { noremap = true })
 map('n', 'GT', ':tabp<CR>', { noremap = true })
 map('n', '<Leader>n', ':tabnew<CR>', { noremap = true })
 
--- Go to symbol definition
-map('n', 'gd', '<Plug>(coc-definition)')
-
--- Rename all symbol references
-map('n', '<F2>', '<Plug>(coc-rename)')
-
--- open ctags in split tab/screen
-map('', '<C-\\>', ':vsp <CR>:exec("tag ".expand("<cword>"))<CR>')
-map('', '<Leader><C-\\>', ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>')
+-- -- open ctags in split tab/screen
+-- map('', '<C-\\>', ':vsp <CR>:exec("tag ".expand("<cword>"))<CR>')
+-- map('', '<Leader><C-\\>', ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>')
 
 map('n', 'zuz', '<Plug>(FastFoldUpdate)')
 
@@ -62,23 +56,6 @@ if (vim.fn.exists(':Ag') == 0) then
   map('n', '\\', ':Ag<SPACE>', { noremap = true })
 end
 
--- Tab to autocomplete text. Shift-Tab to autocomplete from bottom
--- will insert tab at beginning of line,
--- will use completion if not at beginning
--- vim.api.nvim_eval([[
-vim.cmd([[
-  function! CustomTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-      return "\<Tab>"
-    else
-      return "\<C-n>"
-    endif
-  endfunction
-]])
-map('i', '<S-Tab>', '<C-p>', { noremap = true })
-map('i', '<Tab>', '<C-r>=CustomTabWrapper()<CR>', { noremap = true })
-
 -- Show documentation in preview window.
 -- vim.cmd([[
 --   function! s:show_documentation()
@@ -90,7 +67,7 @@ map('i', '<Tab>', '<C-r>=CustomTabWrapper()<CR>', { noremap = true })
 --   endfunction
 -- ]])
 -- map('n', 'K', ':call <SID>show_documentation()<CR>', { noremap = true, silent = true })
-map('n', 'K', ":call CocAction('doHover')<CR>", { noremap = true, silent = true })
+-- map('n', 'K', ":call CocAction('doHover')<CR>", { noremap = true, silent = true })
 
 
 -- Map Ctrl + p to open fuzzy find (FZF)

@@ -12,7 +12,22 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Configurations for Nvim LSP
+  -- use 'neovim/nvim-lspconfig'
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- use 'hrsh7th/cmp-buffer'
+  -- use 'hrsh7th/cmp-path'
+  -- use 'L3MON4D3/LuaSnip'
+  -- use 'saadparwaiz1/cmp_luasnip'
+  -- use { 'hrsh7th/nvim-cmp', event = 'InsertEnter *' }
   use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
 
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
@@ -58,7 +73,6 @@ return require('packer').startup(function()
   use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
   use 'leafgarland/typescript-vim'
   use 'peitalin/vim-jsx-typescript'
-  use { 'neoclide/coc.nvim', branch = 'release' }
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
   use 'rust-lang/rust.vim'
