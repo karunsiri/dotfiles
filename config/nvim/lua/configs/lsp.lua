@@ -14,6 +14,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local action = require('lspsaga.codeaction')
+  local saga_definition = require('lspsaga.definition')
 
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -23,6 +24,9 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', '<Leader>gd', function()
+    saga_definition.preview_definition()
+  end, bufopts)
   vim.keymap.set('n', 'K', function()
     require('lspsaga.hover').render_hover_doc()
   end, bufopts)
