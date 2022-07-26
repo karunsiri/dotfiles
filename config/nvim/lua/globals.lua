@@ -60,3 +60,23 @@ g['airline#extensions#tabline#show_splits'] = 0
 g['airline#extensions#tabline#show_buffers'] = 0
 g['airline_powerline_fonts'] = 1
 g['airline_symbols.linenr'] = ''
+
+-- Markdown preview settings
+-- set to 1, nvim will open the preview window after entering the markdown buffer
+-- default: 0
+g.mkdp_auto_start = 0
+
+-- set to 1, the nvim will auto close current preview window when change
+-- from markdown buffer to another buffer
+-- default: 1
+g.mkdp_auto_close = 1
+
+-- set to 1, the vim will refresh markdown when save the buffer or
+-- leave from insert mode, default 0 is auto refresh markdown as you edit or
+-- move the cursor
+-- default: 0
+g.mkdp_refresh_slow = 1
+
+-- set default theme (dark or light)
+-- By default the theme is define according to the preferences of the system
+g.mkdp_theme = 'dark'

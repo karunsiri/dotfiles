@@ -12,13 +12,6 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Configurations for Nvim LSP
-  -- use 'neovim/nvim-lspconfig'
-  -- use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'hrsh7th/cmp-buffer'
-  -- use 'hrsh7th/cmp-path'
-  -- use 'L3MON4D3/LuaSnip'
-  -- use 'saadparwaiz1/cmp_luasnip'
-  -- use { 'hrsh7th/nvim-cmp', event = 'InsertEnter *' }
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -33,13 +26,6 @@ return require('packer').startup(function()
   use 'rakr/vim-one'
   use 'vim-airline/vim-airline'
 
-  -- use {
-  --   'nvim-lualine/lualine.nvim',
-  --   requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  -- }
-  -- require('lualine').setup(require('configs/lualine'))
-
-  use 'christoomey/vim-run-interactive'
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
     use '/usr/local/opt/fzf'
   else
@@ -78,6 +64,10 @@ return require('packer').startup(function()
   use 'rust-lang/rust.vim'
   use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
+  }
 
   if packer_bootstrap then
     require('packer').sync()
