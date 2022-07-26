@@ -11,6 +11,7 @@ alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 alias glog='git log --oneline --decorate --color --graph'
 alias gbc="git remote prune origin && git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -D"
 alias gfp="git push --force-with-lease"
+alias gdc="git diff --cached"
 
 # Easy navigation
 alias ..="cd .."
