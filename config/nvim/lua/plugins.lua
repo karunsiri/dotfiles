@@ -21,6 +21,7 @@ return require('packer').startup(function()
 
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
+  use { 'glepnir/lspsaga.nvim', branch = main }
 
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
@@ -34,11 +35,7 @@ return require('packer').startup(function()
 
   use 'junegunn/fzf.vim'
   use 'janko-m/vim-test'
-  use 'pangloss/vim-javascript'
-  use 'pbrisbin/vim-mkdir'
   use 'tpope/vim-bundler'
-  use 'tpope/vim-endwise'
-  use 'tpope/vim-eunuch'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-projectionist'
   use 'tpope/vim-rails'
@@ -46,28 +43,25 @@ return require('packer').startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-surround'
-  use 'vim-ruby/vim-ruby'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
+  use 'RRethy/nvim-treesitter-endwise'
   use 'vim-scripts/tComment'
   use 'dense-analysis/ale'
   use 'Yggdroot/indentLine'
   use 'easymotion/vim-easymotion'
   use 'karunsiri/vim-delete-hidden-buffers'
-  use 'Konfekt/FastFold'
   use 'chrisbra/csv.vim'
   use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
-  use 'leafgarland/typescript-vim'
-  use 'peitalin/vim-jsx-typescript'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
-  use 'rust-lang/rust.vim'
   use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
-  use {
-    'iamcco/markdown-preview.nvim',
-    run = function() vim.fn['mkdp#util#install']() end,
-  }
+  use { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end }
 
   if packer_bootstrap then
     require('packer').sync()

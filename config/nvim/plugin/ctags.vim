@@ -15,8 +15,8 @@ function! ReindexCtags()
 endfunction
 
 " to stop this mapping from being added, put this in $MYVIMRC:
-"   let g:thoughtbot_ctags_mappings_enabled = 0
-let g:thoughtbot_ctags_mappings_enabled = get(g:, 'thoughtbot_ctags_mappings_enabled', 1)
-if g:thoughtbot_ctags_mappings_enabled != 0
+"   let g:ctags_mappings_enabled = 0
+let g:ctags_mappings_enabled = get(g:, 'ctags_mappings_enabled', 1)
+if g:ctags_mappings_enabled != 0
   nmap <Leader>ct :call ReindexCtags()<CR>
 endif
