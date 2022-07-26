@@ -23,6 +23,7 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use { 'glepnir/lspsaga.nvim', branch = main }
 
+  -- Aesthetics
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
   use 'vim-airline/vim-airline'

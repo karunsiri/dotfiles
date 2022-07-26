@@ -80,3 +80,10 @@ g.mkdp_refresh_slow = 1
 -- set default theme (dark or light)
 -- By default the theme is define according to the preferences of the system
 g.mkdp_theme = 'dark'
+
+-- List of available color scheme for cyclecolor plugin.
+-- Omit to use all system available colors.
+g.colors = {
+  'onedark',
+  'one',
+}

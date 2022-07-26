@@ -11,8 +11,8 @@
 " Set the current color scheme based on time of day:
 "   :SetColors now
 let loaded_setcolors = 1
-let s:mycolors = ['onedark', 'one']  " colorscheme names that we use to set color
-" let s:mycolors = []
+let g:colors = get(g:, 'colors', []) " colorscheme names that we use to set color
+let s:mycolors = g:colors
 
 " Set list of color scheme names that we will use, except
 " argument 'now' actually changes the current color scheme.
