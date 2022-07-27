@@ -17,6 +17,13 @@
       "}"
     ]
   },
+  "Resource": {
+    "prefix": "res",
+    "body": [
+      "resource \"${1:provider}\" \"${2:name}\" {",
+      "}"
+    ]
+  },
   "Output": {
     "prefix": "output",
     "body": [

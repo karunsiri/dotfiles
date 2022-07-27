@@ -6,5 +6,3 @@ require('lspconfig').terraformls.setup({
   on_attach = configs.on_attach,
   capabilities = configs.capabilities,
 })
-
-require('luasnip.loaders.from_vscode').lazy_load({ paths = { "../../snippets" } })
