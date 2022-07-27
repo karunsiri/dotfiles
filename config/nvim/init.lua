@@ -3,7 +3,6 @@ require('vim_options')
 require('keymaps')
 require('autocmds')
 require('plugins')
-require('configs/nvim-cmp')
 require('configs/lsp')
 -- require('user/pymode')
 

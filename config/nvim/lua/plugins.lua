@@ -17,6 +17,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
+  use 'ray-x/cmp-treesitter'
   use 'hrsh7th/nvim-cmp'
 
   use 'L3MON4D3/LuaSnip'
@@ -55,14 +56,14 @@ return require('packer').startup(function()
   use 'easymotion/vim-easymotion'
   use 'karunsiri/vim-delete-hidden-buffers'
   use 'chrisbra/csv.vim'
-  use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
+  -- use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
   use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
-  use { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end }
+  use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
 
   if packer_bootstrap then
     require('packer').sync()
