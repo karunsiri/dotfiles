@@ -53,7 +53,7 @@ return require('packer').startup(function()
   use 'RRethy/nvim-treesitter-endwise'
   use 'vim-scripts/tComment'
   use 'dense-analysis/ale'
-  use 'Yggdroot/indentLine'
+  use 'lukas-reineke/indent-blankline.nvim'
   use 'easymotion/vim-easymotion'
   use 'karunsiri/vim-delete-hidden-buffers'
   use 'chrisbra/csv.vim'

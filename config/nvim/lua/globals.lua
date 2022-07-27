@@ -29,14 +29,6 @@ g.fastfold_fold_command_suffixes = { 'x','X','a','A','o','O','c','C' }
 g.ruby_fold = 1
 g.eruby_fold = 1
 
--- Enable these coc extensions
-g.coc_global_extensions = {
-  'coc-css',
-  'coc-eslint',
-  'coc-json',
-  'coc-tsserver',
-}
-
 -- Stick <C-P> (FZF) result at the 50% bottom portion of the screen
 g.fzf_layout = { down = '70%' }
 g.rainbow_active = 1
