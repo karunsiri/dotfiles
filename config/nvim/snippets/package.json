@@ -12,6 +12,10 @@
         "path": "./verumex.json"
       },
       {
+        "language": "ruby",
+        "path": "./ruby.json"
+      },
+      {
         "language": "terraform",
         "path": "./terraform.json"
       }
