@@ -1,0 +1,34 @@
+{
+  "DataPipelines": {
+    "prefix": "datap",
+    "body": [
+      "DataPipelines::${1:module}"
+    ],
+    "description": "Short hand for DataPipelines module"
+  },
+  "IngestionStrategies": {
+    "prefix": "ingstrs",
+    "body": [
+      "IngestionStrategies::${1:module}"
+    ],
+    "description": "Short hand for IngestionStrategies module"
+  },
+  "ReferenceValueGroup": {
+    "prefix": "refvalg",
+    "body": [
+      "ReferenceValueGroup"
+    ]
+  },
+  "ReferenceValue": {
+    "prefix": "refval",
+    "body": [
+      "ReferenceValue"
+    ]
+  },
+  "CoreDataset": {
+    "prefix": "coreds",
+    "body": [
+      "CoreDataset"
+    ]
+  }
+}

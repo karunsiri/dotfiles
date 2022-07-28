@@ -6,6 +6,12 @@
   "contributes": {
     "snippets": [
       {
+        "language": [
+          "ruby"
+        ],
+        "path": "./verumex.json"
+      },
+      {
         "language": "terraform",
         "path": "./terraform.json"
       }
