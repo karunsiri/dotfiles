@@ -24,3 +24,8 @@ require("nvim-tree").setup({
     },
   }
 })
+
+local map = require('utils').map
+
+map('n', '<C-t><C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+map('n', '<C-t><C-f>', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })

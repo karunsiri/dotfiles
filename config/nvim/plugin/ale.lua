@@ -1,3 +1,5 @@
+local utils = require('utils')
+
 -- Ale linting events
 utils.create_augroup('ale', {
   { 'VimEnter', '*', 'set',
@@ -9,3 +11,9 @@ utils.create_augroup('ale', {
   { 'InsertEnter', '*', 'call', 'ale#Queue(0)' },
   { 'InsertLeave', '*', 'call', 'ale#Queue(0)' },
 })
+
+local map = utils.map
+
+-- Ale linting error jump
+map('n', '<Leader>p', ':ALENextWrap<CR>', { noremap = true })
+map('n', '<Leader>.', ':ALEPreviousWrap<CR>', { noremap = true })

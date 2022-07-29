@@ -8,8 +8,6 @@ map('n', '<C-l>', '<C-w>l', { noremap = true })
 
 map('n', '<Leader><Up>', ':vertical resize +10<CR>', { noremap = true, silent = true })
 map('n', '<Leader><Down>', ':vertical resize -10<CR>', { noremap = true, silent = true })
-map('n', '<C-t><C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-map('n', '<C-t><C-f>', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 map('n', '<Leader>w', ':w<CR>', { noremap = true })
 map('n', '<Leader>q', ':q<CR>', { noremap = true })
 map('n', '<Leader>bd', ':DeleteHiddenBuffers<CR>:echoe "Hidden Buffers Deleted"<CR>', { noremap = true, silent = true })
@@ -24,15 +22,9 @@ map('n', '<Leader>l', ':TestLast<CR>', { noremap = true, silent = true })
 map('n', '<Leader>a', ':TestSuite<CR>', { noremap = true, silent = true })
 map('n', '<Leader>gt', ':TestVisit<CR>', { noremap = true, silent = true })
 
--- Ale linting error jump
-map('n', '<Leader>p', ':ALENextWrap<CR>', { noremap = true })
-map('n', '<Leader>.', ':ALEPreviousWrap<CR>', { noremap = true })
-
 -- Easier tab navigation
 map('n', 'GT', ':tabp<CR>', { noremap = true })
 map('n', '<Leader>n', ':tabnew<CR>', { noremap = true })
-
-map('n', 'zuz', '<Plug>(FastFoldUpdate)')
 
 -- omnicomplete vim-like navigation override
 map('i', '<C-k>', "pumvisible() ? '<C-p>' : '<C-k>'", { noremap = true, expr = true })

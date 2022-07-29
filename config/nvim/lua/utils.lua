@@ -58,6 +58,6 @@ end
 
 -- We want to be able to access utils in all our configuration files
 -- so we add the module to the _G global variable.
-_G.utils = M
+-- _G.utils = M
 
 return M -- Export the module
