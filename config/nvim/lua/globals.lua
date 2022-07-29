@@ -37,22 +37,6 @@ g.rainbow_conf = {
   separately = { nerdtree = 0 },
 }
 
--- vim-airline themed tabline
--- g['airline#extensions#default#layout'] = {
---   { 'a', 'b', 'c' },
---   { 'x', 'z', 'error', 'warning' }
--- }
---
--- if not vim.fn.exists('g:airline_symbols') then
---   g.airline_symbols = {}
--- end
---
--- g['airline#extensions#tabline#enabled'] = 1
--- g['airline#extensions#tabline#show_splits'] = 0
--- g['airline#extensions#tabline#show_buffers'] = 0
--- g['airline_powerline_fonts'] = 1
--- g['airline_symbols.linenr'] = ''
-
 -- Markdown preview settings
 -- set to 1, nvim will open the preview window after entering the markdown buffer
 -- default: 0

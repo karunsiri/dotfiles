@@ -27,7 +27,10 @@ return require('packer').startup(function()
   -- Aesthetics
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
-  -- use 'vim-airline/vim-airline'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  }
   use 'akinsho/bufferline.nvim'
   use 'glepnir/dashboard-nvim'
 
@@ -62,7 +65,10 @@ return require('packer').startup(function()
   use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
-  use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires={ 'kyazdani42/nvim-web-devicons', opt = true },
+  }
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'
