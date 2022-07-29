@@ -39,7 +39,6 @@ return require('packer').startup(function()
   use 'junegunn/fzf.vim'
   use 'janko-m/vim-test'
   use 'tpope/vim-bundler'
-  use 'tpope/vim-fugitive'
   use 'tpope/vim-projectionist'
   use 'tpope/vim-rails'
   use 'tpope/vim-rake'
@@ -65,6 +64,7 @@ return require('packer').startup(function()
   use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
+  use 'lewis6991/gitsigns.nvim'
 
   if packer_bootstrap then
     require('packer').sync()

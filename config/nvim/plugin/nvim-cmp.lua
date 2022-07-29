@@ -1,6 +1,20 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
+local function cycle_next_suggestion(fallback)
+  if cmp.visible() then
+    cmp.select_next_item()
+  else
+    fallback()
+  end
+end
+
+local function cycle_prev_suggestion()
+  if cmp.visible() then
+    cmp.select_prev_item()
+  end
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -17,20 +31,10 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    -- Press TAB to cycle through suggestions
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    -- Shift + TAB to reverse cycle through suggestions
-    ['<S-Tab>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      end
-    end, { 'i', 's' }),
+    -- Press TAB, or ↓ to cycle through suggestions
+    ['<Tab>'] = cmp.mapping(cycle_next_suggestion, { 'i', 's' }),
+    -- Shift + TAB, or ↑ to reverse cycle through suggestions
+    ['<S-Tab>'] = cmp.mapping(cycle_prev_suggestion, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
     { name = 'luasnip' }, -- For luasnip users.

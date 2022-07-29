@@ -8,8 +8,6 @@ map('n', '<C-l>', '<C-w>l', { noremap = true })
 
 map('n', '<Leader><Up>', ':vertical resize +10<CR>', { noremap = true, silent = true })
 map('n', '<Leader><Down>', ':vertical resize -10<CR>', { noremap = true, silent = true })
-map('n', '<Leader>gb', ':Git blame<CR>', { noremap = true, silent = true })
-map('n', '<Leader>gs', ':Git status<CR>', { noremap = true, silent = true })
 map('n', '<C-t><C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 map('n', '<C-t><C-f>', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 map('n', '<Leader>w', ':w<CR>', { noremap = true })
@@ -34,10 +32,6 @@ map('n', '<Leader>.', ':ALEPreviousWrap<CR>', { noremap = true })
 map('n', 'GT', ':tabp<CR>', { noremap = true })
 map('n', '<Leader>n', ':tabnew<CR>', { noremap = true })
 
--- -- open ctags in split tab/screen
--- map('', '<C-\\>', ':vsp <CR>:exec("tag ".expand("<cword>"))<CR>')
--- map('', '<Leader><C-\\>', ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>')
-
 map('n', 'zuz', '<Plug>(FastFoldUpdate)')
 
 -- omnicomplete vim-like navigation override
@@ -55,20 +49,6 @@ if (vim.fn.exists(':Ag') == 0) then
   -- Map \ to use ag to do full text search
   map('n', '\\', ':Ag<SPACE>', { noremap = true })
 end
-
--- Show documentation in preview window.
--- vim.cmd([[
---   function! s:show_documentation()
---     if (index(['vim','help'], &filetype) >= 0)
---       execute 'h '.expand('<cword>')
---     else
---       call CocAction('doHover')
---     endif
---   endfunction
--- ]])
--- map('n', 'K', ':call <SID>show_documentation()<CR>', { noremap = true, silent = true })
--- map('n', 'K', ":call CocAction('doHover')<CR>", { noremap = true, silent = true })
-
 
 -- Map Ctrl + p to open fuzzy find (FZF)
 map('n', '<C-p>', ':Files<CR>', { noremap = true })
