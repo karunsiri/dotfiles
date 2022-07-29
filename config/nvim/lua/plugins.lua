@@ -27,7 +27,8 @@ return require('packer').startup(function()
   -- Aesthetics
   use 'joshdick/onedark.vim'
   use 'rakr/vim-one'
-  use 'vim-airline/vim-airline'
+  -- use 'vim-airline/vim-airline'
+  use 'akinsho/bufferline.nvim'
   use 'glepnir/dashboard-nvim'
 
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
