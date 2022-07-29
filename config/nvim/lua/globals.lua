@@ -7,9 +7,6 @@ g.mapleader = " "
 -- shell for syntax highlighting purposes.
 g.is_posix = 1
 
--- easymotion configs
-g.EasyMotion_smartcase = 1
-
 -- Treat <li> and <p> tags like the block tags they are
 g.html_indent_tags = 'li\\|p'
 

@@ -57,7 +57,7 @@ return require('packer').startup(function()
   use 'vim-scripts/tComment'
   use 'dense-analysis/ale'
   use 'lukas-reineke/indent-blankline.nvim'
-  use 'easymotion/vim-easymotion'
+  use 'phaazon/hop.nvim'
   use 'karunsiri/vim-delete-hidden-buffers'
   use 'chrisbra/csv.vim'
   -- use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
