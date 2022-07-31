@@ -1,4 +1,9 @@
-require("nvim-tree").setup({
+local ok, tree = pcall(require, 'nvim-tree')
+if not ok then
+  return
+end
+
+tree.setup({
   -- Prefer startup root directory when updating root directory of the tree.
   -- Only relevant when `update_focused_file.update_root` is `true`
   prefer_startup_root = true,

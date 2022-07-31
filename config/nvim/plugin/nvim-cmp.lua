@@ -1,5 +1,11 @@
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local ok, cmp = pcall(require, 'cmp')
+if not ok then
+  return
+end
+local ok, luasnip = pcall(require, 'luasnip')
+if not ok then
+  return
+end
 
 local function cycle_next_suggestion(fallback)
   if cmp.visible() then

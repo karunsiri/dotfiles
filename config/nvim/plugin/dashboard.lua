@@ -1,4 +1,8 @@
-local db = require('dashboard')
+local ok, db = pcall(require, 'dashboard')
+if not ok then
+  return
+end
+
 local tree_api = require('nvim-tree.api')
 
 local dashboard_custom_header = {

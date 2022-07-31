@@ -1,4 +1,6 @@
-require("toggleterm").setup({
+local ok, toggleterm = pcall(require, 'toggleterm')
+
+toggleterm.setup({
   open_mapping = [[<C-z>]],
 })
 
