@@ -31,7 +31,7 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
-  use 'akinsho/bufferline.nvim'
+  use { 'akinsho/bufferline.nvim', tag = 'v2.4.0' }
   use 'glepnir/dashboard-nvim'
 
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then

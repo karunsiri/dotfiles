@@ -9,7 +9,7 @@ map('n', '<C-l>', '<C-w>l', { noremap = true })
 map('n', '<Leader><Up>', ':vertical resize +10<CR>', { noremap = true, silent = true })
 map('n', '<Leader><Down>', ':vertical resize -10<CR>', { noremap = true, silent = true })
 map('n', '<Leader>w', ':w<CR>', { noremap = true })
-map('n', '<Leader>q', ':q<CR>', { noremap = true })
+map('n', '<Leader>q', ':bdelete<CR>', { noremap = true })
 map('n', '<Leader>bd', ':DeleteHiddenBuffers<CR>:echoe "Hidden Buffers Deleted"<CR>', { noremap = true, silent = true })
 
 -- Switch between the last two files
@@ -23,7 +23,6 @@ map('n', '<Leader>a', ':TestSuite<CR>', { noremap = true, silent = true })
 map('n', '<Leader>gt', ':TestVisit<CR>', { noremap = true, silent = true })
 
 -- Easier tab navigation
-map('n', 'GT', ':tabp<CR>', { noremap = true })
 map('n', '<Leader>n', ':tabnew<CR>', { noremap = true })
 
 -- omnicomplete vim-like navigation override

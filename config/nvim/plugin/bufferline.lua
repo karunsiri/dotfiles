@@ -7,7 +7,7 @@ bufferline.setup({
   options = {
     separator_style = 'slant',
     mode = 'tabs',
-    numbers = 'none',
+    numbers = 'ordinal',
     close_icon = '',
     modified_icon = '●',
     indicator_icon = '▎',
@@ -23,3 +23,19 @@ bufferline.setup({
     tab_size = 18,
   },
 })
+
+local map = vim.keymap.set
+local opts = { noremap = true }
+
+local function move_tab_left()
+  vim.cmd[[tabm -1]]
+  bufferline.sort_buffers_by('tabs')
+end
+local function move_tab_right()
+  vim.cmd[[tabm +1]]
+  bufferline.sort_buffers_by('tabs')
+end
+
+map('n', '<C-Right>', move_tab_right, opts)
+map('n', 'GT', function() bufferline.cycle(-1) end, opts)
+map('n', '<C-Left>', move_tab_left, opts)
