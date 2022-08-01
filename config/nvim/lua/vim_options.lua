@@ -32,6 +32,7 @@ o.autoindent = true
 o.formatoptions = o.formatoptions - { 't' }
 o.cursorline = true
 o.completeopt = 'menu,menuone,noselect'
+o.sessionoptions:append { 'globals' }
 
 -- Always display the status line
 o.laststatus = 2
