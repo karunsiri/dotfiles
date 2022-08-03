@@ -6,7 +6,6 @@ map('n', '<C-k>', '<C-w>k', { noremap = true })
 map('n', '<C-h>', '<C-w>h', { noremap = true })
 map('n', '<C-l>', '<C-w>l', { noremap = true })
 
-map('n', '<Leader><Up>', ':vertical resize +10<CR>', { noremap = true, silent = true })
 map('n', '<Leader><Down>', ':vertical resize -10<CR>', { noremap = true, silent = true })
 map('n', '<Leader>w', ':w<CR>', { noremap = true })
 map('n', '<Leader>q', ':bdelete<CR>', { noremap = true })

@@ -62,7 +62,7 @@ return require('packer').startup(function()
   use 'chrisbra/csv.vim'
   -- use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
   use { 'mg979/vim-visual-multi', branch = 'master' }
-  use { 'karunsiri/vim-golden-ratio', branch = 'minimum-width' }
+  use 'beauwilliams/focus.nvim'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
   use {
