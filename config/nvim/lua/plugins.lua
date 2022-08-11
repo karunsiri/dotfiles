@@ -55,7 +55,7 @@ return require('packer').startup(function()
   }
   use 'RRethy/nvim-treesitter-endwise'
   use 'vim-scripts/tComment'
-  use 'dense-analysis/ale'
+  -- use 'dense-analysis/ale'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'phaazon/hop.nvim'
   use 'karunsiri/vim-delete-hidden-buffers'
