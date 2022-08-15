@@ -17,6 +17,7 @@ o.ignorecase = true
 o.incsearch = true
 o.joinspaces = false
 o.number = true
+o.relativenumber = true
 o.numberwidth = 5
 o.list = true
 o.listchars = 'tab:»·,trail:·,nbsp:·'
