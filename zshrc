@@ -54,3 +54,5 @@ fi
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
+
+export PATH="$HOME/.local/bin:$PATH"
