@@ -59,7 +59,6 @@ return require('packer').startup(function()
   use 'phaazon/hop.nvim'
   use 'karunsiri/vim-delete-hidden-buffers'
   use 'chrisbra/csv.vim'
-  -- use { 'python-mode/python-mode', ft = { 'python' }, branch = 'develop' }
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use 'beauwilliams/focus.nvim'
   use 'hashivim/vim-terraform'
@@ -71,7 +70,10 @@ return require('packer').startup(function()
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'
-  use { 'kosayoda/nvim-lightbulb', requires = 'antoinemadec/FixCursorHold.nvim' }
+  use {
+    'antoinemadec/FixCursorHold.nvim',
+    config = function() vim.g.cursorhold_updatetime = 1000 end,
+  }
 
   if packer_bootstrap then
     require('packer').sync()
