@@ -33,6 +33,12 @@ return require('packer').startup(function()
   use { 'akinsho/bufferline.nvim', tag = 'v2.7.0' }
   use 'glepnir/dashboard-nvim'
   use 'hzchirs/vim-material'
+  use {
+    'sainnhe/everforest',
+    config = function()
+      vim.g.everforest_background = 'hard'
+    end
+  }
 
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
     use '/usr/local/opt/fzf'

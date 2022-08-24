@@ -59,4 +59,5 @@ g.mkdp_theme = 'dark'
 g.colors = {
   'onedark',
   'vim-material',
+  'everforest',
 }

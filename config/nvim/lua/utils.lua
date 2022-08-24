@@ -56,6 +56,10 @@ function M.map_lua_buf(mode, keys, action, options, buf_nr)
   vim.api.nvim_buf_set_keymap(buf, mode, keys, "<cmd>lua " .. action .. "<cr>", options)
 end
 
+function M.echo(text)
+  vim.api.nvim_echo({{text, 'None' }}, false, {})
+end
+
 -- We want to be able to access utils in all our configuration files
 -- so we add the module to the _G global variable.
 -- _G.utils = M
