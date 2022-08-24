@@ -4,6 +4,7 @@ require('keymaps')
 require('autocmds')
 require('plugins')
 require('configs/lsp')
+require('configs/color_overrides')
 -- require('user/pymode')
 
 vim.cmd('colorscheme onedark')

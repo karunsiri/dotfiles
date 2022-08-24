@@ -5,7 +5,7 @@ end
 
 lualine.setup({
   options = {
-    theme = 'seoul256',
+    theme = 'auto',
   },
   sections = {
     lualine_b = { 'branch' },

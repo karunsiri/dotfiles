@@ -26,13 +26,13 @@ return require('packer').startup(function()
 
   -- Aesthetics
   use 'joshdick/onedark.vim'
-  use 'rakr/vim-one'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
   use { 'akinsho/bufferline.nvim', tag = 'v2.7.0' }
   use 'glepnir/dashboard-nvim'
+  use 'hzchirs/vim-material'
 
   if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
     use '/usr/local/opt/fzf'
