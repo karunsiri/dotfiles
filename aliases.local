@@ -13,6 +13,9 @@ alias gbc="git remote prune origin && git branch -vv | grep 'origin/.*: gone]' |
 alias gfp="git push --force-with-lease"
 alias gdc="git diff --cached"
 
+# Lazygit
+alias lg="lazygit"
+
 # Easy navigation
 alias ..="cd .."
 alias ...="cd ../.."
