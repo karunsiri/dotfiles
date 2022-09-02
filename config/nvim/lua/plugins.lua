@@ -26,10 +26,7 @@ return require('packer').startup(function()
 
   -- Aesthetics
   use 'joshdick/onedark.vim'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use { 'akinsho/bufferline.nvim', tag = 'v2.8.1' }
   use 'glepnir/dashboard-nvim'
   use 'hzchirs/vim-material'
@@ -69,17 +66,10 @@ return require('packer').startup(function()
   use 'beauwilliams/focus.nvim'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires={ 'kyazdani42/nvim-web-devicons', opt = true },
-  }
+  use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'
-  use {
-    'antoinemadec/FixCursorHold.nvim',
-    config = function() vim.g.cursorhold_updatetime = 1000 end,
-  }
 
   if packer_bootstrap then
     require('packer').sync()
