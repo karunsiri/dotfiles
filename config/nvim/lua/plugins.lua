@@ -30,7 +30,7 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
-  use { 'akinsho/bufferline.nvim', tag = 'v2.7.0' }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.8.1' }
   use 'glepnir/dashboard-nvim'
   use 'hzchirs/vim-material'
   use {

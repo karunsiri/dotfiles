@@ -10,7 +10,6 @@ bufferline.setup({
     numbers = 'ordinal',
     close_icon = '',
     modified_icon = '●',
-    indicator_icon = '▎',
     left_trunc_marker = '',
     buffer_close_icon = '',
     right_trunc_marker = '',
