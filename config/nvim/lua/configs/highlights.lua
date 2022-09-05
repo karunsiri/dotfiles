@@ -7,6 +7,7 @@ function M.vim_material_overrides()
     vim.cmd[[highlight IndentBlanklineChar cterm=nocombine ctermfg=12 gui=nocombine guifg=#344d52]]
   else
     vim.cmd[[highlight IndentBlanklineChar cterm=nocombine ctermfg=12 gui=nocombine guifg=#e4e4e4]]
+    vim.cmd[[highlight DiagnosticInfo guifg=#00a27f]]
   end
 end
 
