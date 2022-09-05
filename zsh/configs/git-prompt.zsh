@@ -103,7 +103,6 @@ function _zsh_git_prompt_git_status() {
         '
             BEGIN {
                 ORS = "";
-
                 fatal = 0;
                 oid = "";
                 head = "";
@@ -116,36 +115,28 @@ function _zsh_git_prompt_git_status() {
                 unstaged = 0;
                 stashed = 0;
             }
-
             $1 == "fatal:" {
                 fatal = 1;
             }
-
             $2 == "branch.oid" {
                 oid = $3;
             }
-
             $2 == "branch.head" {
                 head = $3;
             }
-
             $2 == "branch.upstream" {
                 upstream = $3;
             }
-
             $2 == "branch.ab" {
                 ahead = $3;
                 behind = $4;
             }
-
             $1 == "?" {
                 ++untracked;
             }
-
             $1 == "u" {
                 ++unmerged;
             }
-
             $1 == "1" || $1 == "2" {
                 split($2, arr, "");
                 if (arr[1] != ".") {
@@ -155,19 +146,15 @@ function _zsh_git_prompt_git_status() {
                     ++unstaged;
                 }
             }
-
             $2 == "stash.count" {
                 stashed = $3;
             }
-
             END {
                 if (fatal == 1) {
                     exit(1);
                 }
-
                 print PREFIX;
                 print RC;
-
                 if (head == "(detached)") {
                     print DETACHED;
                     print substr(oid, 0, 7);
@@ -177,7 +164,6 @@ function _zsh_git_prompt_git_status() {
                     print head;
                 }
                 print RC;
-
                 if (upstream != "") {
                     gsub("%", "%%", upstream);
                     if (UPSTREAM_TYPE == "symbol") {
@@ -189,56 +175,46 @@ function _zsh_git_prompt_git_status() {
                     }
                 }
                 print RC;
-
                 if (behind < 0) {
                     print BEHIND;
                     printf "%d", behind * -1;
                     print RC;
                 }
-
                 if (ahead > 0) {
                     print AHEAD;
                     printf "%d", ahead;
                     print RC;
                 }
-
                 print SEPARATOR;
-
                 if (unmerged > 0) {
                     print UNMERGED;
                     print unmerged;
                     print RC;
                 }
-
                 if (staged > 0) {
                     print STAGED;
                     print staged;
                     print RC;
                 }
-
                 if (unstaged > 0) {
                     print UNSTAGED;
                     print unstaged;
                     print RC;
                 }
-
                 if (untracked > 0) {
                     print UNTRACKED;
                     print untracked;
                     print RC;
                 }
-
                 if (stashed > 0) {
                     print STASHED;
                     print stashed;
                     print RC;
                 }
-
                 if (unmerged == 0 && staged == 0 && unstaged == 0 && untracked == 0) {
                     print CLEAN;
                     print RC;
                 }
-
                 print SUFFIX;
                 print RC;
             }
@@ -310,11 +286,10 @@ function _zsh_git_prompt_async_request() {
     # Fork a process to fetch the git status and open a pipe to read from it
     exec {_ZSH_GIT_PROMPT_ASYNC_FD}< <(
         # Tell parent process our pid
-        echo $sysparams[pid]
-
+        builtin echo $sysparams[pid]
         _zsh_git_prompt_git_status
         [[ -n "$ZSH_GIT_PROMPT_ENABLE_SECONDARY" ]] \
-            && echo -n "##secondary##" \
+            && builtin echo -n "##secondary##" \
             && _zsh_git_prompt_git_status_secondary
     )
 
