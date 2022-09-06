@@ -1,7 +1,7 @@
 local configs = require('configs/lsp')
 
 require('lspconfig').solargraph.setup({
-  cmd = { "bin/solargraph", "stdio" },
+  cmd = { "./solargraph", "stdio" },
   settings = {
     solargraph = {
       diagnostics = true,
