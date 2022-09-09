@@ -28,7 +28,7 @@ return require('packer').startup(function()
   -- Aesthetics
   use 'joshdick/onedark.vim'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-  use { 'akinsho/bufferline.nvim', tag = 'v2.8.1' }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.9.1' }
   use 'glepnir/dashboard-nvim'
   use 'hzchirs/vim-material'
   use {
