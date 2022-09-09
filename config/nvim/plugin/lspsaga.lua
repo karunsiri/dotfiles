@@ -8,7 +8,6 @@ saga.init_lsp_saga({
   max_preview_lines = 15,
   finder_request_timeout = 4000,
   finder_action_keys = {
-    open = "o",
     vsplit = "v",
     split = "n",
   },
