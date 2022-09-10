@@ -6,5 +6,5 @@ end
 hop.setup()
 
 local opts = { noremap = true }
-vim.keymap.set('n', '<Leader><Leader>s', function() hop.hint_char1() end, opts)
-vim.keymap.set('n', '<Leader><Leader>w', function() hop.hint_words() end, opts)
+vim.keymap.set({ 'n', 'v' }, 'f', hop.hint_char1, opts)
+vim.keymap.set('n', '<Leader><Leader>w', hop.hint_words, opts)
