@@ -29,7 +29,9 @@ return require('packer').startup(function()
   use 'joshdick/onedark.vim'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use { 'akinsho/bufferline.nvim', tag = 'v2.9.1' }
-  use 'glepnir/dashboard-nvim'
+
+  -- Lock to play nice with fzf.vim
+  use { 'glepnir/dashboard-nvim', commit = '44983543314c9c8fd3a62acdabf5150317aacbfa' }
   use 'hzchirs/vim-material'
   use {
     'sainnhe/everforest',
