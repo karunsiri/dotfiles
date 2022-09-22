@@ -57,6 +57,12 @@ if [ -x "$(command -v flux)" ]; then
   source <(flux completion zsh)
 fi
 
+# Reset terminal color & stylings
+
+#   echo "^[[37mABCHello^[[0m" | noformat
+#   #=> Hello
+alias noformat="sed 's/\x1b\[[0-9;]*[mGKHF]//g'"
+
 # DevOps shells
 LoadDevOpsEnvironment() {
   local environment=$1
