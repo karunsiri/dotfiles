@@ -1,0 +1,6 @@
+# Reset obs-studio virtual camera locked after stopping
+
+function obs-reset() {
+  sudo modprobe -r v4l2loopback
+  sudo modprobe v4l2loopback
+}
