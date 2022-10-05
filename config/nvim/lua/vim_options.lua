@@ -29,6 +29,9 @@ local options = {
   cursorline = true,
   completeopt = 'menu,menuone,noselect',
 
+  -- Don't show vim command box
+  ch = 0,
+
   -- Always display the status line
   laststatus = 2,
 
