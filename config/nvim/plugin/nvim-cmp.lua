@@ -39,8 +39,10 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     -- Press TAB, or ↓ to cycle through suggestions
     ['<Tab>'] = cmp.mapping(cycle_next_suggestion, { 'i', 's' }),
+    ['<Down>'] = cmp.mapping(cycle_next_suggestion, { 'i', 's' }),
     -- Shift + TAB, or ↑ to reverse cycle through suggestions
     ['<S-Tab>'] = cmp.mapping(cycle_prev_suggestion, { 'i', 's' }),
+    ['<Up>'] = cmp.mapping(cycle_prev_suggestion, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
     { name = 'luasnip' }, -- For luasnip users.
