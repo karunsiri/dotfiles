@@ -1,0 +1,6 @@
+# Easily show all ports that all containers used for all pods in a given
+# namespace
+
+pods-ports() {
+  kubectl get pods "$@" -o jsonpath='{range .items[*]}{@.metadata.name}{" "}{@.spec.containers..ports..containerPort}{"\n"}{end}' | column -t
+}
