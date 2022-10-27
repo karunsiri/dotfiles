@@ -1,0 +1,30 @@
+# Easily show all ports that all containers used for all pods.
+# Accepts Kubernetes namespace parameter.
+#
+# Output format will be
+# <pod-name>      [<used-ports>] | [<liveness probe ports>] [<readiness probe ports>]
+#
+# Example:
+#
+#   pods-ports
+#   #> pod-12345           7777 8888 | 8080
+#
+#   pods-ports -n argo
+#   #> argo-server-1a2b3c  2746 | 2746
+#   #> my-app              8080 |
+pods-ports() {
+  kubectl get pods "$@" -o jsonpath='{range .items[*]}{@.metadata.name}{":"}{@.spec.containers..ports..containerPort}{" | "}{@.spec.containers..livenessProbe.httpGet.port}{" "}{@.spec.containers..readinessProbe.httpGet.port}{"\n"}{end}' | column -t -s ':'
+}
+
+# List all ports used by services
+# Accepts Kubernetes namespace parameter.
+#
+# Example:
+#
+#   service-ports -n argo
+#   #=>
+#     NAME                             PORT(S)
+#     argo-workflows-minio             9000/TCP,9001/TCP
+service-ports() {
+  kubectl get services "$@" | awk '{print $1, $5}' | column -t
+}
