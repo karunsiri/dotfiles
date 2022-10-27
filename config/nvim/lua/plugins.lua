@@ -73,7 +73,10 @@ return require('packer').startup(function()
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'
-  use 'norcalli/nvim-colorizer.lua'
+  -- use { 'NvChad/nvim-colorizer.lua' }
+  -- use 'norcalli/nvim-colorizer.lua'
+  use 'karunsiri/nvim-colorizer.lua'
+  -- use 'brenoprata10/nvim-highlight-colors'
 
   if packer_bootstrap then
     require('packer').sync()
