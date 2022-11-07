@@ -76,9 +76,9 @@ db.custom_center = {
   },
   {
     icon = '🚧 ',
-    desc = 'Open new-core-infrastructure ',
+    desc = 'Open new Core Platform Infra',
     shortcut = '',
-    action = open_project('new-core-infrastructure'),
+    action = open_project('core-platform-infrastructure'),
   },
   {
     icon = '💻 ',
