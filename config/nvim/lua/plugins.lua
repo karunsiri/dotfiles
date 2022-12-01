@@ -26,7 +26,7 @@ return require('packer').startup(function()
   use { 'glepnir/lspsaga.nvim', branch = main }
 
   -- Aesthetics
-  use 'joshdick/onedark.vim'
+  use 'olimorris/onedarkpro.nvim'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use { 'akinsho/bufferline.nvim', tag = 'v2.9.1' }
 

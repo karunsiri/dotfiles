@@ -7,7 +7,7 @@ require('configs/lsp')
 require('configs/color_overrides')
 -- require('user/pymode')
 
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme onedarkpro')
 
 vim.api.nvim_create_autocmd(
   { 'BufNewFile', 'BufRead' },
