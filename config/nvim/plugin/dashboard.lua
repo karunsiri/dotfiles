@@ -64,25 +64,25 @@ end
 db.custom_center = {
   {
     icon = '🍹 ',
-    desc = 'Open Verumex                 ',
+    desc = 'Verumex                     ',
     shortcut = '',
     action = open_project('verumex'),
   },
   {
     icon = ' ',
-    desc = 'Open core-infrastructure    ',
+    desc = 'core-infrastructure        ',
     shortcut = '',
     action = open_project('core-infrastructure'),
   },
   {
     icon = '🚧 ',
-    desc = 'Open new Core Platform Infra',
+    desc = 'core-platform-infrastructure',
     shortcut = '',
     action = open_project('core-platform-infrastructure'),
   },
   {
     icon = '💻 ',
-    desc = 'Open dotfiles                ',
+    desc = 'dotfiles                     ',
     shortcut = '',
     action = open_project('../.dotfiles'),
   },
