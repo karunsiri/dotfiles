@@ -3,9 +3,10 @@ if not ok then
   return
 end
 
-require('onedarkpro').setup({
-  dark_theme = 'onedark',
-  light_theme = 'onelight',
+onedarkpro.setup({
+  options = {
+    cursorline = true,
+  },
   highlights = {
     toggleterm = {},
   },
