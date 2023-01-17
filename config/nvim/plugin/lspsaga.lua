@@ -3,13 +3,26 @@ if not ok then
   return
 end
 
-saga.init_lsp_saga({
-  border_style = 'rounded',
-  max_preview_lines = 15,
-  finder_request_timeout = 4000,
-  finder_action_keys = {
+saga.setup({
+  request_timeout = 4000,
+  ui = {
+    theme = 'round',
+    border = 'rounded',
+    winblend = 0,
+  },
+  preview = {
+    lines_above = 5,
+    lines_below = 15
+  },
+  scroll_preview = {
+    scroll_down = '<C-j>',
+    scroll_up = '<C-k>',
+  },
+  finder = {
     vsplit = "v",
     split = "n",
+    vsplit = "v",
+    tabe = "t",
   },
 })
 
