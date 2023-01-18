@@ -68,7 +68,7 @@ return require('packer').startup(function()
   use 'beauwilliams/focus.nvim'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
-  use { 'kyazdani42/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'nvim-tree/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'

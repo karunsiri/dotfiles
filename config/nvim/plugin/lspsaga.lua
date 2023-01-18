@@ -5,6 +5,9 @@ end
 
 saga.setup({
   request_timeout = 4000,
+  symbol_in_winbar = {
+    enable = true,
+  },
   ui = {
     theme = 'round',
     border = 'rounded',

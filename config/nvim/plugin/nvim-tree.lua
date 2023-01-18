@@ -15,6 +15,7 @@ tree.setup({
     mappings = {
       list = {
         { key='x', action="" },
+        { key='<C-n>', action="split" },
         { key='<C-x>', action="" },
       },
     },
