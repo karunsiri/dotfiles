@@ -31,8 +31,8 @@ saga.setup({
 
 local diagnostics = require('lspsaga.diagnostic')
 vim.keymap.set("n", "<Leader>.", function()
-  diagnostics.goto_prev()
+  diagnostics:goto_prev()
 end, { silent = true })
 vim.keymap.set("n", "<Leader>p", function()
-  diagnostics.goto_next()
+  diagnostics:goto_next()
 end, { silent = true })

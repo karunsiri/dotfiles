@@ -3,9 +3,7 @@ local M = {} -- module to export. Same style as ES6 module.
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<Leader>e', function()
-  require('lspsaga.diagnostic').show_line_diagnostics()
-end, opts)
+vim.keymap.set('n', '<Leader>e', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
