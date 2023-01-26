@@ -26,8 +26,9 @@ return require('packer').startup(function()
   use { 'glepnir/lspsaga.nvim', branch = main }
 
   -- Aesthetics
+  use 'nvim-tree/nvim-web-devicons'
   use 'olimorris/onedarkpro.nvim'
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
   use { 'akinsho/bufferline.nvim', tag = 'v3.1.0' }
 
   use { 'glepnir/dashboard-nvim' }
@@ -68,7 +69,7 @@ return require('packer').startup(function()
   use 'beauwilliams/focus.nvim'
   use 'hashivim/vim-terraform'
   use 'luochen1990/rainbow'
-  use { 'nvim-tree/nvim-tree.lua', requires={ 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'nvim-tree/nvim-tree.lua', requires={ 'nvim-tree/nvim-web-devicons', opt = true } }
   use 'akinsho/toggleterm.nvim'
   use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
   use 'lewis6991/gitsigns.nvim'
