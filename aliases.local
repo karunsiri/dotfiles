@@ -67,13 +67,10 @@ alias noformat="sed 's/\x1b\[[0-9;]*[mGKHF]//g'"
 LoadDevOpsEnvironment() {
   local environment=$1
   export KUBECONFIG="$HOME/.kube/verumex-${environment}"
-  export AWS_PROFILE="verumex-${environment}"
-  export AWS_REGION=us-east-1
 }
 
 LoadManagementDevOpsEnvironment() {
   LoadDevOpsEnvironment 'management'
-  export AWS_REGION=eu-central-1
 }
 
 LoadStagingDevOpsEnvironment() {
