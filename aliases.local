@@ -57,6 +57,10 @@ if [ -x "$(command -v flux)" ]; then
   source <(flux completion zsh)
 fi
 
+if [ ! -x "$(command -v open)" ]; then
+  alias open='xdg-open'
+fi
+
 # Reset terminal color & stylings
 
 #   echo "^[[37mABCHello^[[0m" | noformat
