@@ -5,4 +5,7 @@ end
 
 indent.setup {
   show_current_context = true,
+  filetype_exclude = {
+    'dashboard',
+  }
 }
