@@ -17,3 +17,15 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
+
+-- Map lazygit key only if lazygit is available on the system
+if vim.fn.executable('lazygit') == 1 then
+  local Terminal  = require('toggleterm.terminal').Terminal
+  local lazygit = Terminal:new({ direction = "tab", cmd = "lazygit", hidden = true })
+
+  function _lazygit_toggle()
+    lazygit:toggle()
+  end
+
+  vim.keymap.set('n', '<leader>lg', _lazygit_toggle, { noremap = true, silent = true })
+end
