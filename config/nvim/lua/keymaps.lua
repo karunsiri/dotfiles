@@ -17,9 +17,9 @@ map('n', '<Leader><Tab>', '<C-^>', { noremap = true })
 -- vim-test mappings
 map('n', '<Leader>t', ':TestFile<CR>', { noremap = true, silent = true })
 map('n', '<Leader>s', ':TestNearest<CR>', { noremap = true, silent = true })
-map('n', '<Leader>l', ':TestLast<CR>', { noremap = true, silent = true })
-map('n', '<Leader>a', ':TestSuite<CR>', { noremap = true, silent = true })
-map('n', '<Leader>gt', ':TestVisit<CR>', { noremap = true, silent = true })
+-- map('n', '<Leader>l', ':TestLast<CR>', { noremap = true, silent = true })
+-- map('n', '<Leader>a', ':TestSuite<CR>', { noremap = true, silent = true })
+-- map('n', '<Leader>gt', ':TestVisit<CR>', { noremap = true, silent = true })
 
 -- Easier tab navigation
 map('n', '<Leader>n', ':tabnew<CR>', { noremap = true })
