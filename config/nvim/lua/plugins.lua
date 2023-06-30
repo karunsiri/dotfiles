@@ -32,7 +32,7 @@ return require('packer').startup(function()
   use { 'akinsho/bufferline.nvim', tag = 'v3.1.0' }
 
   use { 'glepnir/dashboard-nvim' }
-  use 'hzchirs/vim-material'
+  use { 'rose-pine/neovim', as = 'rose-pine' }
   use {
     'sainnhe/everforest',
     config = function()
