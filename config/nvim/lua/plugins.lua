@@ -1,84 +1,97 @@
--- Bootstrap packer
-
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.api.nvim_command('packadd packer.nvim')
+-- Bootstrap Lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function()
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
+local lazy_options = {}
+local plugins = {
   -- Configurations for Nvim LSP
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'ray-x/cmp-treesitter'
-  use 'hrsh7th/nvim-cmp'
-  use 'williamboman/mason.nvim'
+  'neovim/nvim-lspconfig',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'ray-x/cmp-treesitter',
+  'hrsh7th/nvim-cmp',
+  'williamboman/mason.nvim',
 
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
-  use { 'glepnir/lspsaga.nvim', branch = main }
-
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  { 'nvimdev/lspsaga.nvim',
+    dependencies = {
+      {'neovim/nvim-lspconfig'}
+    }
+  },
   -- Aesthetics
-  use 'nvim-tree/nvim-web-devicons'
-  use 'olimorris/onedarkpro.nvim'
-  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
-  use { 'akinsho/bufferline.nvim', tag = 'v3.1.0' }
-
-  use { 'glepnir/dashboard-nvim' }
-  use { 'rose-pine/neovim', as = 'rose-pine' }
-  use {
+  'nvim-tree/nvim-web-devicons',
+  'olimorris/onedarkpro.nvim',
+  { 'nvim-lualine/lualine.nvim',
+    dependencies = {
+      {'nvim-tree/nvim-web-devicons', optional = true }
+    }
+  },
+  { 'akinsho/bufferline.nvim', tag = 'v4.2.0' },
+  { 'glepnir/dashboard-nvim' },
+  { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
+  {
     'sainnhe/everforest',
+    lazy = true,
     config = function()
       vim.g.everforest_background = 'hard'
     end
-  }
+  },
 
-  if (vim.fn.isdirectory("/usr/local/opt/fzf") ~= 0) then
-    use '/usr/local/opt/fzf'
-  else
-    use { 'junegunn/fzf', run='./install --all' }
-  end
-
-  use 'junegunn/fzf.vim'
-  use 'janko-m/vim-test'
-  use 'tpope/vim-bundler'
-  use 'tpope/vim-projectionist'
-  use 'tpope/vim-rails'
-  use 'tpope/vim-rake'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-rhubarb'
-  use 'tpope/vim-surround'
-  use {
+  {
+    'junegunn/fzf', config = function() vim.fn['fzf#install']() end
+  },
+  { 'junegunn/fzf.vim',
+    dependencies = {
+      { 'junegunn/fzf' }
+    }
+  },
+  { 'janko-m/vim-test', ft = { 'ruby' } },
+  { 'tpope/vim-bundler', ft = { 'ruby' } },
+  { 'tpope/vim-projectionist', ft = { 'ruby' } },
+  { 'tpope/vim-rails', ft = { 'ruby' } },
+  { 'tpope/vim-rake', ft = { 'rake' } },
+  'tpope/vim-repeat',
+  'tpope/vim-rhubarb',
+  'tpope/vim-surround',
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-  }
-  use 'RRethy/nvim-treesitter-endwise'
-  use 'vim-scripts/tComment'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'phaazon/hop.nvim'
-  use 'karunsiri/vim-delete-hidden-buffers'
-  use 'chrisbra/csv.vim'
-  use { 'mg979/vim-visual-multi', branch = 'master' }
-  use 'beauwilliams/focus.nvim'
-  use 'hashivim/vim-terraform'
-  use 'luochen1990/rainbow'
-  use { 'nvim-tree/nvim-tree.lua', requires={ 'nvim-tree/nvim-web-devicons', opt = true } }
-  use 'akinsho/toggleterm.nvim'
-  use { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, run = function() vim.fn['mkdp#util#install']() end }
-  use 'lewis6991/gitsigns.nvim'
+    config = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  },
+  'RRethy/nvim-treesitter-endwise',
+  'vim-scripts/tComment',
+  'lukas-reineke/indent-blankline.nvim',
+  'phaazon/hop.nvim',
+  'karunsiri/vim-delete-hidden-buffers',
+  'chrisbra/csv.vim',
+  { 'mg979/vim-visual-multi', branch = 'master' },
+  'beauwilliams/focus.nvim',
+  { 'hashivim/vim-terraform', ft = { 'terraform', 'tfvars' } },
+  'luochen1990/rainbow',
+  { 'nvim-tree/nvim-tree.lua',
+    dependencies={
+      { 'nvim-tree/nvim-web-devicons', optional = true }
+    }
+  },
+  'akinsho/toggleterm.nvim',
+  { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, config = function() vim.fn['mkdp#util#install']() end },
+  'lewis6991/gitsigns.nvim',
   -- use { 'NvChad/nvim-colorizer.lua' }
   -- use 'norcalli/nvim-colorizer.lua'
-  use 'karunsiri/nvim-colorizer.lua'
+  'karunsiri/nvim-colorizer.lua',
   -- use 'brenoprata10/nvim-highlight-colors'
+}
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+return require('lazy').setup(plugins, lazy_options)

@@ -70,7 +70,7 @@ db.setup({
       { desc = 'Verumex', group = '@property', key = 'v', action = 'e ~/projects/verumex' },
       { desc = 'Infra', group = 'DiagnosticHint', key = 'i', action = 'e ~/projects/core-platform-infrastructure' },
       { desc = ' dotfiles', group = 'DashboardShortCut', key = 'd', action = 'e ~/.dotfiles' },
-      { desc = ' Update', group = 'DashboardShortCut', key = 'u', action = 'PackerSync' },
+      { desc = ' Update', group = 'DashboardShortCut', key = 'u', action = 'Lazy' },
     },
   }
 })

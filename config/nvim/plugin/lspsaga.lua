@@ -5,13 +5,8 @@ end
 
 saga.setup({
   request_timeout = 4000,
-  symbol_in_winbar = {
-    enable = true,
-  },
   ui = {
-    theme = 'round',
     border = 'rounded',
-    winblend = 0,
   },
   preview = {
     lines_above = 5,
@@ -22,10 +17,12 @@ saga.setup({
     scroll_up = '<C-k>',
   },
   finder = {
-    vsplit = "v",
-    split = "n",
-    vsplit = "v",
-    tabe = "t",
+    keys = {
+      vsplit = "v",
+      split = "n",
+      vsplit = "v",
+      tabe = "t",
+    },
   },
 })
 

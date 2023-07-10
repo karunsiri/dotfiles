@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<Leader>ca', '<cmd>Lspsaga code_action<CR>', bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<Leader>gr', '<cmd>Lspsaga lsp_finder<CR>', bufopts)
+  vim.keymap.set('n', '<Leader>gr', '<cmd>Lspsaga finder<CR>', bufopts)
   vim.keymap.set('n', '<Leader>f', vim.lsp.buf.format, bufopts)
 end
 
