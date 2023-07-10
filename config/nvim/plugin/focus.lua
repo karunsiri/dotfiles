@@ -4,8 +4,35 @@ if not ok then
 end
 
 focus.setup({
-  absolutenumber_unfocussed = true,
+  ui = {
+    absolutenumber_unfocussed = true,
+  },
   hybridnumber = true,
+})
+
+-- Disable Focus on some filetypes and buftypes
+local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+local ignore_filetypes = { 'sagafinder' }
+local ignore_buftypes = {}
+
+vim.api.nvim_create_autocmd('WinEnter', {
+    group = augroup,
+    callback = function(_)
+      if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+        vim.b.focus_disable = true
+      end
+    end,
+    desc = 'Disable focus autoresize for BufType',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = augroup,
+    callback = function(_)
+      if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+        vim.b.focus_disable = true
+      end
+    end,
+    desc = 'Disable focus autoresize for FileType',
 })
 
 -- Leader + Up to enlarge focus window

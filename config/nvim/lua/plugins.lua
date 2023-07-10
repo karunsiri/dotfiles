@@ -77,7 +77,7 @@ local plugins = {
   'karunsiri/vim-delete-hidden-buffers',
   'chrisbra/csv.vim',
   { 'mg979/vim-visual-multi', branch = 'master' },
-  'beauwilliams/focus.nvim',
+  { 'beauwilliams/focus.nvim', branch = 'refactor' },
   { 'hashivim/vim-terraform', ft = { 'terraform', 'tfvars' } },
   'luochen1990/rainbow',
   { 'nvim-tree/nvim-tree.lua',
