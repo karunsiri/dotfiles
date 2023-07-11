@@ -12,33 +12,51 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_options = {}
+local lazy_options = {
+  lockfile = vim.fn.stdpath('config') .. "/lazy-lock.json",
+}
+
 local plugins = {
+  -- colorscheme. Loaded first
+  {
+    'olimorris/onedarkpro.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd[[colorscheme onedark]]
+    end,
+  },
+
   -- Configurations for Nvim LSP
   'neovim/nvim-lspconfig',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'ray-x/cmp-treesitter',
-  'hrsh7th/nvim-cmp',
-  'williamboman/mason.nvim',
-
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
-  { 'nvimdev/lspsaga.nvim',
+  {
+    'L3MON4D3/LuaSnip',
     dependencies = {
-      {'neovim/nvim-lspconfig'}
-    }
+      'saadparwaiz1/cmp_luasnip',
+    },
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+    },
+  },
+  'williamboman/mason.nvim',
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'nvimdev/lspsaga.nvim'
+    },
   },
   -- Aesthetics
-  'nvim-tree/nvim-web-devicons',
-  'olimorris/onedarkpro.nvim',
-  { 'nvim-lualine/lualine.nvim',
-    dependencies = {
-      {'nvim-tree/nvim-web-devicons', optional = true }
-    }
-  },
+  -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
+  -- So for api plugins like devicons, we can always set lazy=true
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  'nvim-lualine/lualine.nvim',
   { 'akinsho/bufferline.nvim', tag = 'v4.2.0' },
   { 'glepnir/dashboard-nvim' },
   { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
@@ -51,11 +69,10 @@ local plugins = {
   },
 
   {
-    'junegunn/fzf', config = function() vim.fn['fzf#install']() end
-  },
-  { 'junegunn/fzf.vim',
+    'junegunn/fzf',
+    config = function() vim.fn['fzf#install']() end,
     dependencies = {
-      { 'junegunn/fzf' }
+      'junegunn/fzf.vim',
     }
   },
   { 'janko-m/vim-test', ft = { 'ruby' } },
@@ -64,13 +81,15 @@ local plugins = {
   { 'tpope/vim-rails', ft = { 'ruby' } },
   { 'tpope/vim-rake', ft = { 'rake' } },
   'tpope/vim-repeat',
-  'tpope/vim-rhubarb',
   'tpope/vim-surround',
   {
     'nvim-treesitter/nvim-treesitter',
     config = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    dependencies = {
+      'ray-x/cmp-treesitter',
+      'RRethy/nvim-treesitter-endwise',
+    },
   },
-  'RRethy/nvim-treesitter-endwise',
   'vim-scripts/tComment',
   'lukas-reineke/indent-blankline.nvim',
   'phaazon/hop.nvim',
@@ -80,13 +99,13 @@ local plugins = {
   { 'beauwilliams/focus.nvim', branch = 'refactor' },
   { 'hashivim/vim-terraform', ft = { 'terraform', 'tfvars' } },
   'luochen1990/rainbow',
-  { 'nvim-tree/nvim-tree.lua',
-    dependencies={
-      { 'nvim-tree/nvim-web-devicons', optional = true }
-    }
-  },
+  'nvim-tree/nvim-tree.lua',
   'akinsho/toggleterm.nvim',
-  { 'iamcco/markdown-preview.nvim', ft = { 'markdown' }, config = function() vim.fn['mkdp#util#install']() end },
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = { 'markdown' },
+    config = function() vim.fn['mkdp#util#install']() end
+  },
   'lewis6991/gitsigns.nvim',
   -- use { 'NvChad/nvim-colorizer.lua' }
   -- use 'norcalli/nvim-colorizer.lua'
