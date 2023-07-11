@@ -4,9 +4,6 @@ if not ok then
 end
 
 lualine.setup({
-  options = {
-    theme = 'auto',
-  },
   sections = {
     lualine_b = { 'branch' },
     lualine_c = {
