@@ -58,7 +58,7 @@ g.mkdp_theme = 'dark'
 -- Omit to use all system available colors.
 g.colors = {
   'onedark',
-  'onelight',
   'rose-pine',
+  'onelight',
   'everforest',
 }
