@@ -6,8 +6,12 @@ end
 rose.setup({
   dark_variant = 'moon',
   highlight_groups = {
-		IndentBlanklineChar = { fg = 'highlight_med' },
+    IndentBlanklineChar = { fg = 'highlight_med' },
     IndentBlanklineContextChar = { fg = 'rose' },
+
+    -- Typescript
+    ['@keyword.typescript'] = { fg = 'love' },
+    ['@type.qualifier.typescript'] = { fg = 'iris' },
 
     -- TSX
     ['@variable.tsx'] = { link = null },
