@@ -41,7 +41,28 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
-[ -f ~/.bash_customs ] && source ~/.bash_customs
+COLOR_RED='\[\e[1;31m\]'
+COLOR_GREEN='\[\e[32m\]'
+COLOR_YELLOW='\[\e[33m\]'
+COLOR_BLUE='\[\e[34m\]'
+COLOR_BLACK='\[\e[0m\]'
+GIT_PS1_SHOWUPSTREAM="auto"
+
+# Store last 4096 commands, for fzf's sake
+export HISTSIZE=4096
+
+# fzf options
+export FZF_DEFAULT_OPTS='--no-height --no-reverse'
+export BAT_THEME=GitHub
+export FZF_DEFAULT_OPTS="--bind=alt-k:preview-up,alt-j:preview-down --preview-window=border-thinblock --color=border:248,preview-bg:253"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :60 {}' --scrollbar=▏▕ "
+
+# Install Terraform autocomplete if terraform is available
+if command -v terraform > /dev/null 2>&1; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C $(which terraform) terraform
+fi
+
 [ -x "$(command -v fzf)" ] && source /usr/share/fzf/shell/key-bindings.zsh
 
 # Load Zsh plugin manager and install plugins
