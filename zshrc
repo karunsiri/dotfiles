@@ -42,7 +42,7 @@ _load_settings() {
 _load_settings "$HOME/.zsh/configs"
 
 [ -f ~/.bash_customs ] && source ~/.bash_customs
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -x "$(command -v fzf)" ] && source /usr/share/fzf/shell/key-bindings.zsh
 
 # Load Zsh plugin manager and install plugins
 [ -f ~/.addons/zsh-plugins.zsh ] && source ~/.addons/zsh-plugins.zsh
