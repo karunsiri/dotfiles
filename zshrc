@@ -54,7 +54,7 @@ export HISTSIZE=4096
 # fzf options
 export FZF_DEFAULT_OPTS='--no-height --no-reverse'
 export BAT_THEME=GitHub
-export FZF_DEFAULT_OPTS="--bind=alt-k:preview-up,alt-j:preview-down --preview-window=border-thinblock --color=border:248,preview-bg:253"
+export FZF_DEFAULT_OPTS="--bind=ctrl-alt-k:preview-up,ctrl-alt-j:preview-down --preview-window=border-thinblock --color=border:248,preview-bg:253"
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :60 {}' --scrollbar=▏▕ "
 
 # Install Terraform autocomplete if terraform is available
