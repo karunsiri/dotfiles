@@ -63,7 +63,14 @@ if command -v terraform > /dev/null 2>&1; then
   complete -o nospace -C $(which terraform) terraform
 fi
 
-[ -x "$(command -v fzf)" ] && source /usr/share/fzf/shell/key-bindings.zsh
+# Init FZF key bindings & shell completion
+if [ -x "$(command -v fzf)" ]; then
+  if [ -f "/usr/share/fzf/shell/key-bindings.zsh" ]; then
+    source /usr/share/fzf/shell/key-bindings.zsh
+  elif [ -f "/etc/zsh_completion.d/fzf-key-bindings" ]; then
+    source /etc/zsh_completion.d/fzf-key-bindings
+  fi
+fi
 
 # Load Zsh plugin manager and install plugins
 [ -f ~/.addons/zsh-plugins.zsh ] && source ~/.addons/zsh-plugins.zsh
