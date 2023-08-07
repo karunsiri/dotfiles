@@ -86,3 +86,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Set GOROOT
+[[ -f ~/.asdf/plugins/golang/set-env.zsh ]] && source ~/.asdf/plugins/golang/set-env.zsh
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
