@@ -16,6 +16,22 @@ pods-ports() {
   kubectl get pods "$@" -o jsonpath='{range .items[*]}{@.metadata.name}{":"}{@.spec.containers..ports..containerPort}{" | "}{@.spec.containers..livenessProbe.httpGet.port}{" "}{@.spec.containers..readinessProbe.httpGet.port}{"\n"}{end}' | column -t -s ':'
 }
 
+# Example:
+#
+#   # List IPs of all pods from all namespaces
+#   pods-ips
+#
+#   # List IPs of all pods in kube-system namespace
+#   pods-ips -n kube-system
+pods-ips() {
+  if [ $# -lt 2 ]
+  then
+    kubectl get pods -o yaml -A | yq '.items[].status.podIPs[].ip'
+  else
+    kubectl get pods -o yaml $1 $2 | yq '.items[].status.podIPs[].ip'
+  fi
+}
+
 # List all ports used by services
 # Accepts Kubernetes namespace parameter.
 #
