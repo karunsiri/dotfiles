@@ -17,13 +17,12 @@ local lazy_options = {
 }
 
 local plugins = {
-  -- colorscheme. Loaded first
   {
-    'olimorris/onedarkpro.nvim',
+    'AlexvZyl/nordic.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd[[colorscheme onedark]]
+      require('nordic').load()
     end,
   },
 

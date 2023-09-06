@@ -57,7 +57,7 @@ g.mkdp_theme = 'dark'
 -- List of available color scheme for cyclecolor plugin.
 -- Omit to use all system available colors.
 g.colors = {
-  'onedark',
+  'nordic',
   'rose-pine',
   'onelight',
   'everforest',
