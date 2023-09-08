@@ -20,11 +20,17 @@ function M.everforest()
   end
 end
 
+function M.sonokai()
+  vim.cmd[[highlight IndentBlanklineContextChar cterm=nocombine ctermfg=170 gui=nocombine guifg=#F69C5E]]
+  vim.cmd[[highlight IndentBlanklineChar cterm=nocombine ctermfg=12 gui=nocombine guifg=#424B5B]]
+end
+
 -- List of color overrides.
 --   <color-name> = <override fn>
 M.overrides = {
   ['vim-material'] = M.vim_material_overrides,
   everforest = M.everforest,
+  sonokai = M.sonokai,
 }
 
 return M -- Export the module
