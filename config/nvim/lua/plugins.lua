@@ -58,7 +58,7 @@ local plugins = {
   -- So for api plugins like devicons, we can always set lazy=true
   { "nvim-tree/nvim-web-devicons", lazy = true },
   'nvim-lualine/lualine.nvim',
-  { 'akinsho/bufferline.nvim', tag = 'v4.2.0' },
+  { 'akinsho/bufferline.nvim', tag = 'v4.4.0' },
   { 'glepnir/dashboard-nvim' },
   { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
   {
@@ -97,7 +97,7 @@ local plugins = {
   'karunsiri/vim-delete-hidden-buffers',
   'chrisbra/csv.vim',
   { 'mg979/vim-visual-multi', branch = 'master' },
-  { 'beauwilliams/focus.nvim', branch = 'refactor' },
+  { 'beauwilliams/focus.nvim' },
   { 'hashivim/vim-terraform', ft = { 'terraform', 'tfvars' } },
   'luochen1990/rainbow',
   'nvim-tree/nvim-tree.lua',
