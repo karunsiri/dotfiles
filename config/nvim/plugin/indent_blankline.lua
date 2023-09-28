@@ -1,11 +1,14 @@
-local ok, indent = pcall(require, 'indent_blankline')
+local ok, indent = pcall(require, 'ibl')
 if not ok then
   return
 end
 
 indent.setup {
-  show_current_context = true,
-  filetype_exclude = {
-    'dashboard',
+  indent = { char = '│' },
+  exclude = {
+    filetypes = { 'dashboard' }
+  },
+  scope = {
+    highlight = 'IndentBlankLineContextChar'
   }
 }

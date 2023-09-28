@@ -59,6 +59,5 @@ g.mkdp_theme = 'dark'
 g.colors = {
   'sonokai',
   'rose-pine',
-  'onelight',
   'everforest',
 }
