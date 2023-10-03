@@ -88,19 +88,19 @@ alias noformat="sed 's/\x1b\[[0-9;]*[mGKHF]//g'"
 # DevOps shells
 LoadDevOpsEnvironment() {
   local environment=$1
-  export KUBECONFIG="$HOME/.kube/verumex-${environment}"
+  export KUBECONFIG="$HOME/.kube/verumex${environment}"
 }
 
 LoadManagementDevOpsEnvironment() {
-  LoadDevOpsEnvironment 'management'
+  LoadDevOpsEnvironment '-management'
 }
 
 LoadStagingDevOpsEnvironment() {
-  LoadDevOpsEnvironment 'staging'
+  LoadDevOpsEnvironment '-staging'
 }
 
 LoadProductionDevOpsEnvironment() {
-  LoadDevOpsEnvironment 'production'
+  LoadDevOpsEnvironment '-production'
 }
 
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
