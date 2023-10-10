@@ -4,7 +4,10 @@ if not ok then
 end
 
 indent.setup {
-  indent = { char = '│' },
+  indent = {
+    char = '│',
+    highlight = 'IndentBlanklineChar'
+  },
   exclude = {
     filetypes = { 'dashboard' }
   },
