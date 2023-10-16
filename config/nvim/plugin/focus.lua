@@ -37,3 +37,4 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Leader + Up to enlarge focus window
 vim.keymap.set('n', '<Leader><Up>', focus.focus_maximise, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader><Down>', focus.focus_autoresize, { noremap = true, silent = true })
