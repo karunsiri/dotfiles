@@ -28,11 +28,9 @@ local opts = { noremap = true }
 
 local function move_tab_left()
   vim.cmd[[tabm -1]]
-  bufferline.sort_buffers_by('tabs')
 end
 local function move_tab_right()
   vim.cmd[[tabm +1]]
-  bufferline.sort_buffers_by('tabs')
 end
 
 map('n', '<C-Right>', move_tab_right, opts)
