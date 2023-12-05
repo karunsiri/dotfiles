@@ -12,7 +12,7 @@ focus.setup({
 
 -- Disable Focus on some filetypes and buftypes
 local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
-local ignore_filetypes = { 'sagafinder' }
+local ignore_filetypes = { 'sagafinder', 'sagaoutline' }
 local ignore_buftypes = {}
 
 vim.api.nvim_create_autocmd('WinEnter', {
