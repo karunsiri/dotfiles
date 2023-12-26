@@ -1,14 +1,17 @@
 k9s:
   refreshRate: 2
   maxConnRetry: 5
-  enableMouse: false
-  headless: false
-  logoless: true
-  crumbsless: false
   readOnly: false
   noExitOnCtrlC: false
-  noIcons: false
   skipLatestRevCheck: false
+
+  ui:
+    headless: false
+    logoless: true
+    crumbsless: false
+    noIcons: false
+    enableMouse: false
+
   logger:
     tail: 100
     buffer: 5000
@@ -16,33 +19,14 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  clusters:
-    minikube:
-      namespace:
-        active: all
-        lockFavorites: false
-        favorites:
-          - all
-      view:
-        active: po
-      featureGates: &nodeshell
-        # Toggles NodeShell support. Allow K9s to shell into nodes if needed. Default false.
-        nodeShell: true
-      shellPod: &shellpod
-        image: busybox:1.35.0
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-    arn:aws:eks:us-east-1:565317756671:cluster/eks-production-us-east-1: &verumex
-      namespace:
-        active: verumex
-        lockFavorites: true
-        favorites:
-          - verumex
-          - kube-system
-      view:
-        active: po
-      featureGates: &nodeshell
-      shellPod: &shellpod
-    arn:aws:eks:us-east-1:385970127662:cluster/eks-staging-us-east-1: *verumex
+
+  shellPod: &shellpod
+    image: busybox:1.36.1
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+
+  featureGates: &nodeshell
+    # Toggles NodeShell support. Allow K9s to shell into nodes if needed. Default false.
+    nodeShell: true
