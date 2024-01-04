@@ -11,6 +11,7 @@ k9s:
     crumbsless: false
     noIcons: false
     enableMouse: false
+    skin: onedark
 
   logger:
     tail: 100
