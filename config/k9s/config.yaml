@@ -1,6 +1,6 @@
 k9s:
   refreshRate: 2
-  maxConnRetry: 5
+  maxConnRetry: 3
   readOnly: false
   noExitOnCtrlC: false
   skipLatestRevCheck: false
@@ -17,7 +17,7 @@ k9s:
     tail: 100
     buffer: 5000
     sinceSeconds: 300
-    fullScreenLogs: false
+    fullScreen: false
     textWrap: false
     showTime: false
 
@@ -28,6 +28,10 @@ k9s:
       cpu: 100m
       memory: 100Mi
 
-  featureGates: &nodeshell
-    # Toggles NodeShell support. Allow K9s to shell into nodes if needed. Default false.
-    nodeShell: true
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
