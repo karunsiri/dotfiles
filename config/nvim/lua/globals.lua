@@ -27,7 +27,7 @@ g.ruby_fold = 1
 g.eruby_fold = 1
 
 -- Stick <C-P> (FZF) result at the 50% bottom portion of the screen
-g.fzf_layout = { down = '70%' }
+g.fzf_layout = { down = '50%' }
 g.rainbow_active = 1
 g.rainbow_conf = {
   guifgs = { 'coral', 'aquamarine3', 'MediumPurple3', 'burlywood3' },

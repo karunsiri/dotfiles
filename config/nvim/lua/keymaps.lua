@@ -28,16 +28,7 @@ map('i', '<C-k>', "pumvisible() ? '<C-p>' : '<C-k>'", { noremap = true, expr = t
 map('i', '<C-j>', "pumvisible() ? '<C-n>' : '<C-j>'", { noremap = true, expr = true })
 
 -- Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if (vim.fn.exists(':Ag') == 0) then
-  vim.api.nvim_create_user_command(
-    'Ag',
-    'grep <args>|cwindow|redraw!',
-    { nargs='+', complete='file', bar=true }
-  )
-
-  -- Map \ to use ag to do full text search
-  map('n', '\\', ':Ag<SPACE>', { noremap = true })
-end
+map('n', '\\', ':Ag<SPACE>', { noremap = true })
 
 -- Map Ctrl + p to open fuzzy find (FZF)
 map('n', '<C-p>', ':Files<CR>', { noremap = true })
