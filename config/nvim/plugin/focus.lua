@@ -6,8 +6,10 @@ end
 focus.setup({
   ui = {
     absolutenumber_unfocussed = true,
+    hybridnumber = true,
+    relativenumber = true,
+    signcolumn = true,
   },
-  hybridnumber = true,
 })
 
 -- Disable Focus on some filetypes and buftypes

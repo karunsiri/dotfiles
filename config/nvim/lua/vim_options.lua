@@ -69,6 +69,9 @@ local options = {
 
   -- Use Ag over Grep
   grepprg = 'ag --nogroup --nocolor',
+
+  -- Show diagnostics without left gutter jumping around
+  signcolumn = 'yes'
 }
 
 for k, v in pairs(options) do
