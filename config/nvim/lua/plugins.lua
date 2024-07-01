@@ -29,7 +29,12 @@ local plugins = {
   },
 
   -- Configurations for Nvim LSP
-  'neovim/nvim-lspconfig',
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'nvimdev/lspsaga.nvim'
+    },
+  },
   {
     'L3MON4D3/LuaSnip',
     dependencies = {
@@ -47,12 +52,6 @@ local plugins = {
     },
   },
   'williamboman/mason.nvim',
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      'nvimdev/lspsaga.nvim'
-    },
-  },
   -- Aesthetics
   -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
   -- So for api plugins like devicons, we can always set lazy=true

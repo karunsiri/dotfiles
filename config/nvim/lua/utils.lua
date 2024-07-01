@@ -60,6 +60,11 @@ function M.echo(text)
   vim.api.nvim_echo({{text, 'None' }}, false, {})
 end
 
+function M.is_executable(command)
+  local result = os.execute("command -v " .. command .. " >/dev/null 2>&1")
+  return result
+end
+
 -- We want to be able to access utils in all our configuration files
 -- so we add the module to the _G global variable.
 -- _G.utils = M
