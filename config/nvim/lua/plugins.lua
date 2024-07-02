@@ -19,13 +19,35 @@ local lazy_options = {
 local plugins = {
   {
     'sainnhe/sonokai',
-    lazy = false,
-    priority = 1000,
+    -- lazy = false,
+    -- priority = 1000,
     config = function()
       vim.g.sonokai_style = 'atlantis'
       vim.g.sonokai_better_performance = 1
-      vim.cmd[[colorscheme sonokai]]
+      -- vim.cmd[[colorscheme sonokai]]
     end,
+  },
+
+  {
+    'navarasu/onedark.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local onedark = require('onedark')
+      onedark.setup {
+        style = 'dark',
+        toggle_style_list = {},
+        highlights = {
+          ["@variable.member.ruby"] = { fg = '$orange' },
+          ["@keyword.function.ruby"] = { fg = '$red' },
+          ["@property.json"] = { fmt = 'italic' },
+          ["@boolean.ruby"] = { fg = '$orange', fmt = 'italic' },
+          ["@constant.builtin.ruby"] = { fg = '$orange', fmt = 'bold,italic' },
+          ["@constant.builtin.json"] = { fg = '$orange', fmt = 'bold' },
+        }
+      }
+      onedark.load()
+    end
   },
 
   -- Configurations for Nvim LSP
