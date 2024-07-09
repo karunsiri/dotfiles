@@ -17,26 +17,64 @@ local lazy_options = {
 }
 
 local plugins = {
+  -- {
+  --   'navarasu/onedark.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     local onedark = require('onedark')
+  --     onedark.setup {
+  --       style = 'dark',
+  --       toggle_style_list = {},
+  --       highlights = {
+  --         ["@variable.member.ruby"] = { fg = '$orange' },
+  --         ["@keyword.function.ruby"] = { fg = '$red' },
+  --         ["@property.json"] = { fmt = 'italic' },
+  --         ["@boolean.ruby"] = { fg = '$orange', fmt = 'italic' },
+  --         ["@constant.builtin.ruby"] = { fg = '$orange', fmt = 'bold,italic' },
+  --         ["@constant.builtin.json"] = { fg = '$orange', fmt = 'bold' },
+  --       }
+  --     }
+  --     onedark.load()
+  --   end
+  -- },
 
   {
-    'navarasu/onedark.nvim',
+    'olimorris/onedarkpro.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      local onedark = require('onedark')
+      local variant = 'onedark'
+      local onedark = require('onedarkpro')
       onedark.setup {
-        style = 'dark',
-        toggle_style_list = {},
+        options = {
+          cursorline = true,
+        },
+        colors = {
+          light_gray = "require('onedarkpro.helpers').lighten('gray', 0.5, 'onelight')",
+          dark_gray = "require('onedarkpro.helpers').darken('gray', 1, 'onedark')",
+        },
         highlights = {
-          ["@variable.member.ruby"] = { fg = '$orange' },
-          ["@keyword.function.ruby"] = { fg = '$red' },
-          ["@property.json"] = { fmt = 'italic' },
-          ["@boolean.ruby"] = { fg = '$orange', fmt = 'italic' },
-          ["@constant.builtin.ruby"] = { fg = '$orange', fmt = 'bold,italic' },
-          ["@constant.builtin.json"] = { fg = '$orange', fmt = 'bold' },
-        }
+          Comment = {
+            fg = {
+              onedark = '${dark_gray}',
+              onelight = '${light_gray}',
+            },
+            italic = true,
+          },
+          ["@variable.member.ruby"] = { fg = '${orange}' },
+          ["@keyword.modifier.ruby"] = { fg = '${red}' },
+          ["@boolean.ruby"] = { fg = '${orange}', italic = true },
+          ["@boolean.lua"] = { fg = '${orange}', italic = true },
+          ["@constant.builtin.json"] = { fg = '${purple}', bold = true, italic = true },
+
+          ["@lsp.type.property.terraform"] = { fg = '${red}', italic = true },
+          ["@lsp.type.parameter.terraform"] = { fg = '${cyan}', italic = true },
+          ["@variable.builtin.terraform"] = { fg = '${yellow}' },
+        },
       }
-      onedark.load()
+
+      vim.cmd[[colorscheme onedark]]
     end
   },
 
