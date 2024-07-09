@@ -60,5 +60,4 @@ g.colors = {
   'onedark',
   'rose-pine',
   'everforest',
-  'sonokai',
 }
