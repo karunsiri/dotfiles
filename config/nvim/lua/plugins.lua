@@ -66,6 +66,7 @@ local plugins = {
           ["@keyword.modifier.ruby"] = { fg = '${red}' },
           ["@boolean.ruby"] = { fg = '${orange}', italic = true },
           ["@boolean.lua"] = { fg = '${orange}', italic = true },
+          ["@boolean.toml"] = { fg = '${orange}', italic = true },
           ["@constant.builtin.json"] = { fg = '${purple}', bold = true, italic = true },
 
           ["@lsp.type.property.terraform"] = { fg = '${red}', italic = true },
