@@ -14,3 +14,6 @@ vim.api.nvim_create_autocmd(
     command = [[setfiletype markdown]],
   }
 )
+
+-- Workaround for https://github.com/neovim/neovim/pull/31676
+vim.hl = vim.highlight
