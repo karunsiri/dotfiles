@@ -25,7 +25,14 @@ local plugins = {
   --     local onedark = require('onedark')
   --     onedark.setup {
   --       style = 'dark',
-  --       toggle_style_list = {},
+  --       toggle_style_key = "<F7>",
+  --       toggle_style_list = { 'warm', 'light' },
+  --       colors = {
+  --         gray = '#5a616d',
+  --       },
+  --       code_style = {
+  --         comments = 'italic',
+  --       },
   --       highlights = {
   --         ["@variable.member.ruby"] = { fg = '$orange' },
   --         ["@keyword.function.ruby"] = { fg = '$red' },
@@ -33,6 +40,15 @@ local plugins = {
   --         ["@boolean.ruby"] = { fg = '$orange', fmt = 'italic' },
   --         ["@constant.builtin.ruby"] = { fg = '$orange', fmt = 'bold,italic' },
   --         ["@constant.builtin.json"] = { fg = '$orange', fmt = 'bold' },
+  --         ["@variable.member.ruby"] = { fg = '$orange' },
+  --         ["@keyword.modifier.ruby"] = { fg = '$red' },
+  --         ["@boolean.ruby"] = { fg = '$orange', fmt = 'italic' },
+  --         ["@boolean.lua"] = { fg = '${orange}', fmt = 'italic' },
+  --         ["@boolean.toml"] = { fg = '${orange}', fmt = 'italic' },
+  --         ["@constant.builtin.json"] = { fg = '${purple}', bold = true, fmt = 'italic' },
+  --         ["@lsp.type.property.terraform"] = { fg = '${red}', fmt = 'italic' },
+  --         ["@lsp.type.parameter.terraform"] = { fg = '${cyan}', fmt = 'italic' },
+  --         ["@variable.builtin.terraform"] = { fg = '${yellow}' },
   --       }
   --     }
   --     onedark.load()
@@ -51,8 +67,12 @@ local plugins = {
           cursorline = true,
         },
         colors = {
-          light_gray = "require('onedarkpro.helpers').lighten('gray', 0.5, 'onelight')",
-          dark_gray = "require('onedarkpro.helpers').darken('gray', 1, 'onedark')",
+          onedark = { bg = "#2C2D30" },
+          light_gray = "#A8A8A8",
+          dark_gray = "#748A9A",
+        },
+        styles = {
+          comments = "italic",
         },
         highlights = {
           Comment = {
@@ -61,10 +81,15 @@ local plugins = {
               onelight = '${light_gray}',
             },
             italic = true,
+            bold = false,
           },
+          ["@variable.ruby"] = {},
           ["@variable.member.ruby"] = { fg = '${orange}' },
+          ["@keyword.function.ruby"] = { fg = '${red}' },
           ["@keyword.modifier.ruby"] = { fg = '${red}' },
+          ["@function.builtin.ruby"] = { fg = '${cyan}' },
           ["@boolean.ruby"] = { fg = '${orange}', italic = true },
+          ["@string.special.symbol.ruby"] = { fg = '${cyan}' },
           ["@boolean.lua"] = { fg = '${orange}', italic = true },
           ["@boolean.toml"] = { fg = '${orange}', italic = true },
           ["@constant.builtin.json"] = { fg = '${purple}', bold = true, italic = true },
@@ -74,7 +99,6 @@ local plugins = {
           ["@variable.builtin.terraform"] = { fg = '${yellow}' },
         },
       }
-
       vim.cmd[[colorscheme onedark]]
     end
   },
