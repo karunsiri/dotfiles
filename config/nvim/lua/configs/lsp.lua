@@ -5,13 +5,23 @@ local M = {} -- module to export. Same style as ES6 module.
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<Leader>e', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
+  -- Enable semantic tokens if the server supports it
+  if client.server_capabilities.semanticTokensProvider then
+    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      buffer = bufnr, -- Ensures it only applies to the current buffer
+      callback = function()
+        vim.lsp.buf.semantic_tokens_full()
+      end,
+    })
+  end
+
+  -- Only map the following keys
+  -- after the language server attaches to the current buffer
+  --
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -38,10 +48,13 @@ end
 -- All defaults. No overrides.
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Override client LSP capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- Add semantic tokens support
+capabilities.textDocument.semanticTokens = {
+  full = true,
+  requests = { range = true },
+}
 
 M.on_attach = on_attach
 M.capabilities = capabilities
