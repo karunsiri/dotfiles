@@ -20,13 +20,12 @@ gitsigns.setup({
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
-    map('n', '<Leader>db', function() gs.blame_line() end)
-    map('n', '<Leader>dd', function() gs.diffthis() end)
+    map('n', '<Leader>db', gs.blame_line)
+    map('n', '<Leader>dd', gs.diffthis)
 
     -- Hunk actions
-    map('n', '<Leader>dp', function() gs.preview_hunk() end)
-    map('n', '<Leader>ds', function() gs.stage_hunk() end)
+    map('n', '<Leader>dp', gs.preview_hunk)
     map('n', '<Leader>ds', gs.stage_hunk)
-    map('n', '<Leader>du', function() gs.undo_stage_hunk() end)
+    map('n', '<Leader>du', gs.undo_stage_hunk)
   end
 })
