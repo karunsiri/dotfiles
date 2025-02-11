@@ -11,10 +11,15 @@ local on_attach = function(client, bufnr)
 
   -- Enable semantic tokens if the server supports it
   if client.server_capabilities.semanticTokensProvider then
-    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-      buffer = bufnr, -- Ensures it only applies to the current buffer
-      callback = function()
-        vim.lsp.buf.semantic_tokens_full()
+    -- Trigger semantic token refresh once LSP is fully attached
+    vim.api.nvim_create_autocmd("LspAttach", {
+      buffer = bufnr,
+      callback = function(args)
+        local client_id = args.data.client_id
+        local attached_client = vim.lsp.get_client_by_id(client_id)
+        if attached_client and attached_client.server_capabilities.semanticTokensProvider then
+          vim.lsp.semantic_tokens.start(bufnr, client_id)
+        end
       end,
     })
   end
@@ -51,10 +56,11 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Add semantic tokens support
-capabilities.textDocument.semanticTokens = {
-  full = true,
-  requests = { range = true },
-}
+-- capabilities.textDocument.semanticTokens = {
+--   full = true,
+--   requests = { range = true },
+-- }
+capabilities.textDocument.semanticTokens = vim.lsp.protocol.make_client_capabilities().textDocument.semanticTokens
 
 M.on_attach = on_attach
 M.capabilities = capabilities
