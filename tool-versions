@@ -1,11 +1,11 @@
 age 1.1.1
 awscli 2.17.17
 eksctl 0.136.0
-flux2 0.41.2
+flux2 2.5.1
 golang 1.22.3
 jq 1.6
 k9s 0.40.5
-kubectl 1.28.3
+kubectl 1.30.10
 lazygit 0.47.1
 nodejs 20.10.0
 yq 4.34.2
