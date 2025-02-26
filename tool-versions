@@ -6,6 +6,6 @@ golang 1.22.3
 jq 1.6
 k9s 0.40.5
 kubectl 1.30.10
-lazygit 0.47.1
+lazygit 0.47.2
 nodejs 20.10.0
 yq 4.34.2
