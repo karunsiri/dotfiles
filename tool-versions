@@ -1,5 +1,5 @@
 age 1.1.1
-awscli 2.17.17
+awscli 2.24.15
 eksctl 0.136.0
 flux2 2.5.1
 golang 1.22.3
