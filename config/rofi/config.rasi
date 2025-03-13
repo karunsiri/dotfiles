@@ -6,6 +6,8 @@
  * Configuration For Rofi Version: 1.7.3
  **/
 
+ @theme "/dev/null"
+
 configuration {
   /*---------- General setting ----------*/
   modi: "drun,run,filebrowser,window";
@@ -83,7 +85,6 @@ configuration {
 
   /*---------- Misc setting ----------*/
   terminal: "rofi-sensible-terminal";
-  font: "Mono 12";
   sort: false;
   threads: 0;
   click-to-exit: true;
@@ -179,3 +180,5 @@ configuration {
   me-accept-custom: "Control+MouseDPrimary";
 */
 }
+
+@import "rounded-nord.rasi"
