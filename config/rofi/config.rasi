@@ -10,7 +10,7 @@
 
 configuration {
   /*---------- General setting ----------*/
-  modi: "drun,run,filebrowser,window";
+  modi: "drun,run,window";
   case-sensitive: false;
   cycle: true;
   filter: "";
@@ -64,7 +64,7 @@ configuration {
   window-thumbnail: false;
 
   /*---------- Combi settings ----------*/
-/*  combi-modi: "window,run";*/
+  combi-modi: "window,drun,run";
 /*  combi-hide-mode-prefix: false;*/
 /*  combi-display-format: "{mode} {text}";*/
 
@@ -78,7 +78,7 @@ configuration {
   display-windowcd: "Window CD";
   display-run: "Run";
   display-ssh: "SSH";
-  display-drun: "Apps";
+  display-drun: "Apps:";
   display-combi: "Combi";
   display-keys: "Keys";
   display-filebrowser: "Files";
