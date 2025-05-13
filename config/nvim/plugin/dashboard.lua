@@ -63,7 +63,10 @@ db.setup({
   theme = 'hyper',
   config = {
     packages = { enable = false },
-    header = dashboard_custom_header,
+    -- header = dashboard_custom_header,
+    week_header = {
+      enable = true
+    },
     mru = { limit = 5 },
     project = { limit = 5, action = 'e ' },
     shortcut = {
