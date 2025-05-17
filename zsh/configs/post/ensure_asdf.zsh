@@ -1,7 +1,7 @@
 ASDF_VERSION=v0.16.5
 ASDF_DATA_DIR=$HOME/.asdf
 
-PATH="$PATH:${ASDF_DATA_DIR}:${ASDF_DATA_DIR}/shims"
+PATH="${ASDF_DATA_DIR}:${ASDF_DATA_DIR}/shims:$PATH"
 
 function download_mac() {
   curl -L -o /tmp/asdf.tar.gz \
