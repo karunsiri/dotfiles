@@ -186,6 +186,7 @@ local plugins = {
   -- use 'norcalli/nvim-colorizer.lua'
   'karunsiri/nvim-colorizer.lua',
   -- use 'brenoprata10/nvim-highlight-colors'
+  'github/copilot.vim',
 }
 
 return require('lazy').setup(plugins, lazy_options)
