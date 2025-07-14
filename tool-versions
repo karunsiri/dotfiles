@@ -4,7 +4,7 @@ flux2 2.5.1
 golang 1.22.3
 jq 1.6
 k9s 0.50.6
-kubectl 1.30.10
+kubectl 1.33.2
 lazygit 0.50.0
 nodejs 22.15.0
 yq 4.34.2
