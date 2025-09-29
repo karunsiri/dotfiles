@@ -1,0 +1,6 @@
+git:
+  overrideGpg: false
+
+gui:
+  spinner:
+    rate: 1000
