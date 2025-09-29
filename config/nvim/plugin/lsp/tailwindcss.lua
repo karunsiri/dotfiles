@@ -4,7 +4,9 @@ if true then
   return
 end
 
-require('lspconfig').tailwindcss.setup({
+vim.lsp.config('tailwindcss', {
   on_attach = configs.on_attach,
   capabilities = configs.capabilities,
 })
+
+vim.lsp.enable('tailwindcss')

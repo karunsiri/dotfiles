@@ -18,8 +18,10 @@ if next(command) == nil then
 end
 
 local configs = require('configs/lsp')
-require('lspconfig').rubocop.setup({
+vim.lsp.config('rubocop', {
   cmd = command,
   on_attach = configs.on_attach,
   capabilities = configs.capabilities,
 })
+
+vim.lsp.enable('rubocop')

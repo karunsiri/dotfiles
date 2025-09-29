@@ -1,6 +1,6 @@
 local configs = require('configs/lsp')
 
-require('lspconfig').stylelint_lsp.setup({
+vim.lsp.config('stylelint_lsp', {
   filetypes = {
     'css',
     'scss'
@@ -8,3 +8,5 @@ require('lspconfig').stylelint_lsp.setup({
   on_attach = configs.on_attach,
   capabilities = configs.capabilities,
 })
+
+vim.lsp.enable('stylelint_lsp')
