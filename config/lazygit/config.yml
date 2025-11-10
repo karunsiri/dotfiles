@@ -1,5 +1,5 @@
 git:
-  overrideGpg: false
+  overrideGpg: true
 
 gui:
   spinner:
