@@ -3,4 +3,4 @@ git:
 
 gui:
   spinner:
-    rate: 1000
+    rate: 2000
