@@ -45,7 +45,6 @@ alias rake='be rake'
 alias rspec='be rspec'
 alias tmux='TERM=xterm-256color tmux -2 -u'
 alias grunt='npx grunt'
-alias yarn='npx yarn'
 
 # Rspec
 alias parallel_prepare='be rake parallel:drop parallel:create parallel:prepare parallel:migrate'
