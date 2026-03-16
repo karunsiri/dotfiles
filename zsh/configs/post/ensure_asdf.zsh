@@ -1,4 +1,4 @@
-ASDF_VERSION=v0.18.0
+ASDF_VERSION=v0.18.1
 ASDF_DATA_DIR=$HOME/.asdf
 
 PATH="${ASDF_DATA_DIR}:${ASDF_DATA_DIR}/shims:$PATH"
@@ -42,4 +42,4 @@ if ! command -v asdf &> /dev/null; then
   fi
 fi
 
-load_asdf
+# load_asdf
