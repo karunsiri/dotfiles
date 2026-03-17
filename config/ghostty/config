@@ -10,3 +10,6 @@ font-feature = +zero, +ss01, +ss18, +ss07, +ss10, +ss11, +ss15, +ss17
 
 # Load local overrides from the same folder
 config-file = ?./config.local
+
+# Copy the terminfo entry the first time logging into a new server over SSH
+shell-integration-features = ssh-terminfo
