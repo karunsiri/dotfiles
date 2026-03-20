@@ -17,18 +17,18 @@ function download_linux() {
   rm /tmp/asdf.tar.gz
 }
 
-function load_asdf() {
-  mkdir -p $ASDF_DATA_DIR
-
-  if [ ! -f "${ASDF_DATA_DIR}/completions/_asdf" ]; then
-    echo "Installing ASDF completions..."
-    mkdir -p "${ASDF_DATA_DIR}/completions"
-    asdf completion zsh > "${ASDF_DATA_DIR}/completions/_asdf"
-  fi
-
-  fpath=(${ASDF_DATA_DIR}/completions $fpath)
-  autoload -Uz compinit
-}
+# function load_asdf() {
+#   mkdir -p $ASDF_DATA_DIR
+#
+#   if [ ! -f "${ASDF_DATA_DIR}/completions/_asdf" ]; then
+#     echo "Installing ASDF completions..."
+#     mkdir -p "${ASDF_DATA_DIR}/completions"
+#     asdf completion zsh > "${ASDF_DATA_DIR}/completions/_asdf"
+#   fi
+#
+#   fpath=(${ASDF_DATA_DIR}/completions $fpath)
+#   autoload -Uz compinit
+# }
 
 if ! command -v asdf &> /dev/null; then
   echo "Downloading ASDF ${ASDF_VERSION} into ${ASDF_DATA_DIR}..."
