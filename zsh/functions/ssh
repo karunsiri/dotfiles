@@ -1,23 +1,28 @@
 ssh() {
-  local target="$1"
-  local label="$target"
+  local target=""
+  local label=""
   local old_name=""
+  local rc=0
 
-  label="${label##*@}"    # remove user@
+  # Ask ssh how it resolved the target/hostname
+  target="$(command ssh -G "$@" 2>/dev/null | awk '/^hostname /{print $2; exit}')"
+
+  # Fallback if ssh -G doesn't give us anything useful
+  [ -z "$target" ] && target="$1"
+
+  label="${target##*@}"   # remove user@
   label="${label%%.*}"    # remove domain suffix
 
-  # If in tmux, rename the window to the connecting hostname
-  if [ -n "$TMUX" ]; then
+  if [ -n "$TMUX" ] && [ -n "$label" ]; then
     old_name="$(tmux display-message -p '#W')"
-    tmux rename-window "$label"
+    tmux rename-window -- "$label"
   fi
 
   command ssh "$@"
-  local rc=$?
+  rc=$?
 
-  # Rename the window to the previous value, if not in tmux
-  if [ -n "$TMUX" ]; then
-    tmux rename-window "$old_name"
+  if [ -n "$TMUX" ] && [ -n "$old_name" ]; then
+    tmux rename-window -- "$old_name"
   fi
 
   return $rc
