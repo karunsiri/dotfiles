@@ -4,7 +4,7 @@
 # Additionally, each config option is also explained in detail
 # on Ghostty's website, at https://ghostty.org/docs/config.
 
-theme = iTerm2 Solarized Light
+theme = light:"Rose Pine Dawn",dark:"One Half Dark"
 font-family = MonoLisa
 font-feature = +zero, +ss01, +ss18, +ss07, +ss10, +ss11, +ss15, +ss17
 
