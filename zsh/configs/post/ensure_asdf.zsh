@@ -1,7 +1,7 @@
 ASDF_VERSION=v0.18.1
 ASDF_DATA_DIR=$HOME/.asdf
 
-PATH="${ASDF_DATA_DIR}:${ASDF_DATA_DIR}/shims:$PATH"
+# PATH="${ASDF_DATA_DIR}:${ASDF_DATA_DIR}/shims:$PATH"
 
 function download_mac() {
   curl -L -o /tmp/asdf.tar.gz \
@@ -30,16 +30,16 @@ function download_linux() {
 #   autoload -Uz compinit
 # }
 
-if ! command -v asdf &> /dev/null; then
-  echo "Downloading ASDF ${ASDF_VERSION} into ${ASDF_DATA_DIR}..."
-
-  # Detect OS
-  if [[ $OSTYPE == 'linux'* ]]; then
-    download_linux
-  else
-    # assumes darwin (macOS)
-    download_mac
-  fi
-fi
+# if ! command -v asdf &> /dev/null; then
+#   echo "Downloading ASDF ${ASDF_VERSION} into ${ASDF_DATA_DIR}..."
+#
+#   # Detect OS
+#   if [[ $OSTYPE == 'linux'* ]]; then
+#     download_linux
+#   else
+#     # assumes darwin (macOS)
+#     download_mac
+#   fi
+# fi
 
 # load_asdf
