@@ -1,0 +1,24 @@
+ssh() {
+  local target="$1"
+  local label="$target"
+  local old_name=""
+
+  label="${label##*@}"    # remove user@
+  label="${label%%.*}"    # remove domain suffix
+
+  # If in tmux, rename the window to the connecting hostname
+  if [ -n "$TMUX" ]; then
+    old_name="$(tmux display-message -p '#W')"
+    tmux rename-window "$label"
+  fi
+
+  command ssh "$@"
+  local rc=$?
+
+  # Rename the window to the previous value, if not in tmux
+  if [ -n "$TMUX" ]; then
+    tmux rename-window "$old_name"
+  fi
+
+  return $rc
+}
