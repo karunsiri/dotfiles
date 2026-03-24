@@ -1,7 +1,7 @@
 # https://github.com/woefe/git-prompt.zsh
 #
 # git-prompt.zsh -- a lightweight git prompt for zsh.
-# Copyright © 2019 Wolfgang Popp
+# Copyright © 2024 Wolfgang Popp
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,8 @@ autoload -U colors && colors
 # Settings
 : "${ZSH_GIT_PROMPT_SHOW_UPSTREAM=""}"
 : "${ZSH_GIT_PROMPT_SHOW_STASH=""}"
+: "${ZSH_GIT_PROMPT_SHOW_TRACKING_COUNTS="1"}"
+: "${ZSH_GIT_PROMPT_SHOW_LOCAL_COUNTS="1"}"
 : "${ZSH_GIT_PROMPT_ENABLE_SECONDARY=""}"
 : "${ZSH_GIT_PROMPT_NO_ASYNC=""}"
 : "${ZSH_GIT_PROMPT_FORCE_BLANK=""}"
@@ -38,6 +40,7 @@ autoload -U colors && colors
 : "${ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg_bold[cyan]%}:"}"
 : "${ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"}"
 : "${ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳ "}"
+: "${ZSH_THEME_GIT_PROMPT_UPSTREAM_NO_TRACKING=""}"
 : "${ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX="%{$fg[red]%}(%{$fg[yellow]%}"}"
 : "${ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX="%{$fg[red]%})"}"
 : "${ZSH_THEME_GIT_PROMPT_BEHIND="↓"}"
@@ -72,23 +75,39 @@ setopt PROMPT_SUBST
 (( $+commands[nawk] ))  &&  : "${ZSH_GIT_PROMPT_AWK_CMD:=nawk}"
                             : "${ZSH_GIT_PROMPT_AWK_CMD:=awk}"
 
-function _zsh_git_prompt_git_status() {
-    emulate -L zsh
-    {
+# Use --show-stash for git versions newer than 2.35.0
+_zsh_git_prompt_git_version=$(command git version)
+if [[ "${_zsh_git_prompt_git_version:12}" == 2.<35->.<-> ]]; then
+    _zsh_git_prompt_git_cmd() {
+        GIT_OPTIONAL_LOCKS=0 command git status --show-stash --branch --porcelain=v2 2>&1 \
+            || echo "fatal: git command failed"
+    }
+else
+    _zsh_git_prompt_git_cmd() {
         [[ -n "$ZSH_GIT_PROMPT_SHOW_STASH" ]] && (
             c=$(command git rev-list --walk-reflogs --count refs/stash 2> /dev/null)
-            [[ -n "$c" ]] && echo "# stash.count $c"
+            [[ -n "$c" ]] && echo "# stash $c"
         )
         GIT_OPTIONAL_LOCKS=0 command git status --branch --porcelain=v2 2>&1 \
             || echo "fatal: git command failed"
-    } | $ZSH_GIT_PROMPT_AWK_CMD \
+    }
+fi
+unset _zsh_git_prompt_git_version
+
+
+function _zsh_git_prompt_git_status() {
+    emulate -L zsh
+    _zsh_git_prompt_git_cmd | $ZSH_GIT_PROMPT_AWK_CMD \
         -v PREFIX="$ZSH_THEME_GIT_PROMPT_PREFIX" \
         -v SUFFIX="$ZSH_THEME_GIT_PROMPT_SUFFIX" \
         -v SEPARATOR="$ZSH_THEME_GIT_PROMPT_SEPARATOR" \
         -v DETACHED="$ZSH_THEME_GIT_PROMPT_DETACHED" \
         -v BRANCH="$ZSH_THEME_GIT_PROMPT_BRANCH" \
         -v UPSTREAM_TYPE="$ZSH_GIT_PROMPT_SHOW_UPSTREAM" \
+        -v SHOW_TRACKING_COUNTS="$ZSH_GIT_PROMPT_SHOW_TRACKING_COUNTS" \
+        -v SHOW_LOCAL_COUNTS="$ZSH_GIT_PROMPT_SHOW_LOCAL_COUNTS" \
         -v UPSTREAM_SYMBOL="$ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL" \
+        -v UPSTREAM_NO_TRACKING="$ZSH_THEME_GIT_PROMPT_UPSTREAM_NO_TRACKING" \
         -v UPSTREAM_PREFIX="$ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX" \
         -v UPSTREAM_SUFFIX="$ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX" \
         -v BEHIND="$ZSH_THEME_GIT_PROMPT_BEHIND" \
@@ -98,11 +117,13 @@ function _zsh_git_prompt_git_status() {
         -v UNSTAGED="$ZSH_THEME_GIT_PROMPT_UNSTAGED" \
         -v UNTRACKED="$ZSH_THEME_GIT_PROMPT_UNTRACKED" \
         -v STASHED="$ZSH_THEME_GIT_PROMPT_STASHED" \
+        -v SHOW_STASH="$ZSH_GIT_PROMPT_SHOW_STASH" \
         -v CLEAN="$ZSH_THEME_GIT_PROMPT_CLEAN" \
         -v RC="%{$reset_color%}" \
         '
             BEGIN {
                 ORS = "";
+
                 fatal = 0;
                 oid = "";
                 head = "";
@@ -115,28 +136,62 @@ function _zsh_git_prompt_git_status() {
                 unstaged = 0;
                 stashed = 0;
             }
+
+            function prompt_element(prefix, content, suffix) {
+                print(prefix);
+                gsub("%", "%%", content);
+                print(content);
+                print(suffix);
+                print(RC);
+            }
+
+            function count_element(prefix, count, show_count) {
+                content = "";
+                if (show_count) {
+                    content = count;
+                }
+                if (count > 0) {
+                    prompt_element(prefix, content);
+                }
+            }
+
+            function local_element(prefix, count) {
+                count_element(prefix, count, SHOW_LOCAL_COUNTS)
+            }
+
+            function tracking_element(prefix, count) {
+                count_element(prefix, count, SHOW_TRACKING_COUNTS)
+            }
+
             $1 == "fatal:" {
                 fatal = 1;
             }
+
             $2 == "branch.oid" {
                 oid = $3;
             }
+
             $2 == "branch.head" {
                 head = $3;
             }
+
             $2 == "branch.upstream" {
                 upstream = $3;
             }
+
             $2 == "branch.ab" {
                 ahead = $3;
                 behind = $4;
             }
+
             $1 == "?" {
                 ++untracked;
             }
+
             $1 == "u" {
                 ++unmerged;
             }
+
             $1 == "1" || $1 == "2" {
                 split($2, arr, "");
                 if (arr[1] != ".") {
@@ -146,77 +201,55 @@ function _zsh_git_prompt_git_status() {
                     ++unstaged;
                 }
             }
-            $2 == "stash.count" {
+
+            $2 == "stash" {
                 stashed = $3;
             }
+
             END {
                 if (fatal == 1) {
                     exit(1);
                 }
-                print PREFIX;
-                print RC;
+
+                prompt_element(PREFIX);
+
                 if (head == "(detached)") {
-                    print DETACHED;
-                    print substr(oid, 0, 7);
+                    prompt_element(DETACHED, substr(oid, 0, 7));
                 } else {
-                    print BRANCH;
-                    gsub("%", "%%", head);
-                    print head;
+                    prompt_element(BRANCH, head);
                 }
-                print RC;
-                if (upstream != "") {
-                    gsub("%", "%%", upstream);
-                    if (UPSTREAM_TYPE == "symbol") {
-                        print UPSTREAM_SYMBOL;
-                    } else if (UPSTREAM_TYPE == "full") {
-                        print UPSTREAM_PREFIX;
-                        print upstream;
-                        print UPSTREAM_SUFFIX;
-                    }
+
+                if (upstream == "") {
+                    prompt_element(UPSTREAM_NO_TRACKING);
+                } else if (UPSTREAM_TYPE == "symbol") {
+                    prompt_element(UPSTREAM_SYMBOL);
+                } else if (UPSTREAM_TYPE == "full") {
+                    prompt_element(UPSTREAM_PREFIX, upstream, UPSTREAM_SUFFIX);
                 }
-                print RC;
-                if (behind < 0) {
-                    print BEHIND;
-                    printf "%d", behind * -1;
-                    print RC;
+
+                tracking_element(BEHIND, behind * -1);
+
+                tracking_element(AHEAD, ahead * 1);
+
+                prompt_element(SEPARATOR);
+
+                local_element(UNMERGED, unmerged);
+
+                local_element(STAGED, staged);
+
+                local_element(UNSTAGED, unstaged);
+
+                local_element(UNTRACKED, untracked);
+
+                if (SHOW_STASH) {
+                    local_element(STASHED, stashed);
                 }
-                if (ahead > 0) {
-                    print AHEAD;
-                    printf "%d", ahead;
-                    print RC;
-                }
-                print SEPARATOR;
-                if (unmerged > 0) {
-                    print UNMERGED;
-                    print unmerged;
-                    print RC;
-                }
-                if (staged > 0) {
-                    print STAGED;
-                    print staged;
-                    print RC;
-                }
-                if (unstaged > 0) {
-                    print UNSTAGED;
-                    print unstaged;
-                    print RC;
-                }
-                if (untracked > 0) {
-                    print UNTRACKED;
-                    print untracked;
-                    print RC;
-                }
-                if (stashed > 0) {
-                    print STASHED;
-                    print stashed;
-                    print RC;
-                }
+
                 if (unmerged == 0 && staged == 0 && unstaged == 0 && untracked == 0) {
-                    print CLEAN;
-                    print RC;
+                    prompt_element(CLEAN);
                 }
-                print SUFFIX;
-                print RC;
+
+                prompt_element(SUFFIX);
             }
         '
 }
@@ -259,6 +292,7 @@ function _zsh_git_prompt_git_status_secondary() {
 zmodload zsh/system
 
 function _zsh_git_prompt_async_request() {
+    emulate -L zsh
     typeset -g _ZSH_GIT_PROMPT_ASYNC_FD _ZSH_GIT_PROMPT_ASYNC_PID
 
     # If we've got a pending request, cancel it
@@ -287,6 +321,7 @@ function _zsh_git_prompt_async_request() {
     exec {_ZSH_GIT_PROMPT_ASYNC_FD}< <(
         # Tell parent process our pid
         builtin echo $sysparams[pid]
+
         _zsh_git_prompt_git_status
         [[ -n "$ZSH_GIT_PROMPT_ENABLE_SECONDARY" ]] \
             && builtin echo -n "##secondary##" \
@@ -318,7 +353,7 @@ function _zsh_git_prompt_callback() {
 
     if [[ -z "$2" || "$2" == "hup" ]]; then
         # Read output from fd
-        fd_data="$(cat <&$1)"
+        fd_data="$(command cat <&$1)"
         output=( ${(s:##secondary##:)fd_data} )
         _ZSH_GIT_PROMPT_STATUS_OUTPUT="${output[1]}"
         _ZSH_GIT_PROMPT_STATUS_SECONDARY_OUTPUT="${output[2]}"
