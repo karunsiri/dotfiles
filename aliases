@@ -38,6 +38,13 @@ alias lg="lazygit"
 alias ..="cd .."
 alias ...="cd ../.."
 
+#AWSume alias to source the AWSume script
+alias awsume="source awsume"
+
+#Auto-Complete function for AWSume
+#Auto-Complete function for AWSume
+fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+
 # Shorthand
 alias be='bundle exec'
 alias rails='be rails'

@@ -1,5 +1,8 @@
 local _old_path="$PATH"
 
+# Local config
+[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+
 if [[ $PATH != $_old_path ]]; then
   # `colors` isn't initialized yet, so define a few manually
   typeset -AHg fg fg_bold
@@ -24,13 +27,3 @@ MSG
 fi
 
 unset _old_path
-
-#AWSume alias to source the AWSume script
-alias awsume="source awsume"
-
-#Auto-Complete function for AWSume
-#Auto-Complete function for AWSume
-fpath=(~/.awsume/zsh-autocomplete/ $fpath)
-
-# Local config
-[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
