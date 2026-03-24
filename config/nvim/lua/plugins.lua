@@ -106,6 +106,7 @@ local plugins = {
   -- Configurations for Nvim LSP
   {
     'neovim/nvim-lspconfig',
+    tag = 'v2.7.0',
     dependencies = {
       'nvimdev/lspsaga.nvim'
     },
