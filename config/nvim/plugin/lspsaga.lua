@@ -24,6 +24,9 @@ saga.setup({
       tabe = "t",
     },
   },
+  lightbulb = {
+    sign = false,
+  },
 })
 
 local diagnostics = require('lspsaga.diagnostic')
