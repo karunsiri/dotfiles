@@ -185,7 +185,12 @@ local plugins = {
   'lewis6991/gitsigns.nvim',
   -- use { 'NvChad/nvim-colorizer.lua' }
   -- use 'norcalli/nvim-colorizer.lua'
-  'karunsiri/nvim-colorizer.lua',
+  -- 'karunsiri/nvim-colorizer.lua',
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {},
+  },
   -- use 'brenoprata10/nvim-highlight-colors'
   'github/copilot.vim',
 }
