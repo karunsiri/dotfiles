@@ -160,7 +160,9 @@ local plugins = {
   'tpope/vim-surround',
   {
     'nvim-treesitter/nvim-treesitter',
-    config = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    commit = '539abf6da5ee8702e37b82cc953131dadd570da2',
+    lazy = false,
+    build = ':TSUpdate',
     dependencies = {
       'ray-x/cmp-treesitter',
       'RRethy/nvim-treesitter-endwise',
@@ -175,7 +177,17 @@ local plugins = {
   { 'beauwilliams/focus.nvim' },
   { 'hashivim/vim-terraform', ft = { 'terraform', 'tfvars' } },
   'luochen1990/rainbow',
-  'nvim-tree/nvim-tree.lua',
+  {
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nvim-tree-v1.16.0',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require('nvim-tree').setup {}
+    end
+  },
   'akinsho/toggleterm.nvim',
   {
     'iamcco/markdown-preview.nvim',
