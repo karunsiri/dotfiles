@@ -32,3 +32,6 @@ map('n', '\\', ':Ag<SPACE>', { noremap = true })
 
 -- Map Ctrl + p to open fuzzy find (FZF)
 map('n', '<C-p>', ':Files<CR>', { noremap = true })
+
+-- Theme selector
+map('n', '<Leader>C', ':Themery<CR>', { noremap = true })

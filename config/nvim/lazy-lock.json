@@ -33,6 +33,7 @@
   "rainbow": { "branch": "master", "commit": "76ca1a20aa42edb5c65c19029968aad4625790dc" },
   "rose-pine": { "branch": "main", "commit": "cf2a288696b03d0934da713d66c6d71557b5c997" },
   "tComment": { "branch": "master", "commit": "e9ee1caada3338387ed4702db463323cfee8e925" },
+  "themery.nvim": { "branch": "main", "commit": "bfa58f4b279d21cb515b28023e1b68ec908584b2" },
   "toggleterm.nvim": { "branch": "main", "commit": "9a88eae817ef395952e08650b3283726786fb5fb" },
   "vim-bundler": { "branch": "master", "commit": "64a448589e5e238cce0030d08984368ddc3851ac" },
   "vim-delete-hidden-buffers": { "branch": "master", "commit": "2746bd333d1068b5ed1af80d5c3109ccde02d1eb" },

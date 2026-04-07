@@ -132,6 +132,20 @@ local plugins = {
   -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
   -- So for api plugins like devicons, we can always set lazy=true
   { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    'zaldih/themery.nvim',
+    config = function()
+      require('themery').setup {
+        themes = {
+          'onedark',
+          'rose-pine',
+          'everforest',
+          'onelight',
+        },
+        livePreview = true,
+      }
+    end,
+  },
   'nvim-lualine/lualine.nvim',
   { 'akinsho/bufferline.nvim', tag = 'v4.9.1' },
   { 'glepnir/dashboard-nvim' },
