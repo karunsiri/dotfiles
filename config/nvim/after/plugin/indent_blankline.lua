@@ -6,12 +6,8 @@ end
 indent.setup {
   indent = {
     char = '│',
-    highlight = 'IndentBlanklineChar'
   },
   exclude = {
-    filetypes = { 'dashboard' }
+    filetypes = { 'dashboard' },
   },
-  scope = {
-    highlight = 'IndentBlankLineContextChar'
-  }
 }
