@@ -1,10 +1,47 @@
 # Load .env file into shell session for environment variables
+# Usage:
+#
+# Load '.env' file from the current directory
+#
+#   envup
+#
+# Load a custom env file
+#
+#   envup ~/.env.local
 
 function envup() {
-  if [ -f .env ]; then
-    export $(sed '/^ *#/ d' .env)
+  local envfile="${1:-.env}"
+  if [ -f "$envfile" ]; then
+    # acc: accumulates lines for multiline values
+    # in_quote: tracks whether we're inside an open double-quoted value
+    local acc="" in_quote=0
+    while IFS= read -r line || [ -n "$line" ]; do
+      if [[ $in_quote -eq 0 ]]; then
+        # Skip blank lines and comments
+        [[ -z "$line" || "$line" == \#* ]] && continue
+        acc="$line"
+        # Check if value opens a double quote but doesn't close it (multiline)
+        if [[ "$line" == *='"'* && "$line" != *'"'*'"'* ]]; then
+          in_quote=1
+        else
+          # Single-line value; eval expands variable references
+          eval export "$acc"
+          acc=""
+        fi
+      else
+        # Continue accumulating lines inside a multiline quoted value
+        acc="${acc}
+${line}"
+        # Closing quote found; export the complete value
+        if [[ "$line" == *'"' ]]; then
+          in_quote=0
+          eval export "$acc"
+          acc=""
+        fi
+      fi
+    done < "$envfile"
   else
-    echo 'No .env file found' 1>&2
+    echo "No $envfile file found" 1>&2
     return 1
   fi
 }
