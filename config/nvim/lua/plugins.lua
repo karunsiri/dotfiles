@@ -174,6 +174,7 @@ local plugins = {
   'tpope/vim-surround',
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     commit = '539abf6da5ee8702e37b82cc953131dadd570da2',
     lazy = false,
     build = ':TSUpdate',
