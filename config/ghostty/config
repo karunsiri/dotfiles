@@ -13,3 +13,6 @@ config-file = ?./config.local
 
 # Copy the terminfo entry the first time logging into a new server over SSH
 shell-integration-features = ssh-terminfo,ssh-env
+
+# Used when selecting a session beyond 9 in TMUX, e.g. (M-a), (M-b), ...
+macos-option-as-alt = true
