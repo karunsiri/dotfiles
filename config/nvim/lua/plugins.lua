@@ -185,7 +185,10 @@ local plugins = {
   },
   'vim-scripts/tComment',
   'lukas-reineke/indent-blankline.nvim',
-  'phaazon/hop.nvim',
+  {
+    'smoka7/hop.nvim',
+    commit = '707049feaca9ae65abb3696eff9aefc7879e66aa',
+  },
   'karunsiri/vim-delete-hidden-buffers',
   'chrisbra/csv.vim',
   { 'mg979/vim-visual-multi', branch = 'master' },
