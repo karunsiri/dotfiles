@@ -16,3 +16,5 @@ rerun.txt
 tmp/**/*
 /tags
 config/kitty/kitty.conf.bak
+
+**/.claude/settings.local.json

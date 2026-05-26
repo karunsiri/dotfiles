@@ -1,3 +1,10 @@
+-- Disable when no Copilot token exists.
+-- Plugin still loads so `:Copilot setup` remains available on fresh machines.
+if vim.fn.filereadable(vim.fn.expand('~/.config/github-copilot/auth.db')) == 0 then
+  vim.g.copilot_enabled = 0
+  return
+end
+
 vim.g.copilot_no_tab_map = true
 -- local Copilot state
 vim.g._copilot_enabled = true
