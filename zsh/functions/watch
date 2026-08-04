@@ -1,0 +1,27 @@
+# Minimal watch(1) for systems that lack it (e.g. macOS): re-run a command
+# on an interval, clearing between runs. No-op when a real `watch` exists,
+# so Linux keeps its native command.
+#
+# Usage (mirrors GNU watch):
+#
+#   watch <command>            # re-run every 2s
+#   watch -n <seconds> <cmd>   # custom interval
+#   watch -n 5 ls -l
+#
+# Adapted from https://stackoverflow.com/a/9574123 (CC BY-SA 3.0).
+
+if ! command -v watch >/dev/null 2>&1; then
+  function watch() {
+    local interval=2
+    if [[ "$1" == "-n" ]]; then
+      interval="$2"
+      shift 2
+    fi
+    while :; do
+      clear
+      date
+      eval "$*"
+      sleep "$interval"
+    done
+  }
+fi
