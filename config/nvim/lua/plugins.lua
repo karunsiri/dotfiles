@@ -106,7 +106,7 @@ local plugins = {
   -- Configurations for Nvim LSP
   {
     'neovim/nvim-lspconfig',
-    tag = 'v2.7.0',
+    tag = 'v2.11.0',
     dependencies = {
       'nvimdev/lspsaga.nvim'
     },
@@ -175,7 +175,7 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
-    commit = '539abf6da5ee8702e37b82cc953131dadd570da2',
+    commit = 'c9f9ed6c1892f629ea399f4ee7905f2686fa13f2',
     lazy = false,
     build = ':TSUpdate',
     dependencies = {
