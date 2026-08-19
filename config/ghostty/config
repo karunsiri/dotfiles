@@ -5,8 +5,10 @@
 # on Ghostty's website, at https://ghostty.org/docs/config.
 
 theme = light:"Rose Pine Dawn",dark:"One Half Dark"
-font-family = MonoLisa
-font-feature = +zero, +ss01, +ss18, +ss07, +ss10, +ss11, +ss15, +ss17
+font-family = MonoLisaCode
+font-feature = "+dlig, +zero"
+font-feature = "+cv01, +cv02, +cv03, +cv04, +cv05, +cv07, +cv08, +cv09, +cv10, +cv11"
+font-feature = "+ss05, +ss07, +ss11, +ss13"
 
 # Load local overrides from the same folder
 config-file = ?./config.local
