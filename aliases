@@ -91,22 +91,22 @@ fi
 #   #=> Hello
 alias noformat="sed 's/\x1b\[[0-9;]*[mGKHF]//g'"
 
-# DevOps shells
-LoadDevOpsEnvironment() {
-  local environment=$1
-  export KUBECONFIG="$HOME/.kube/verumex${environment}"
-}
-
+# DevOps shells — all clusters now live in a single ~/.kube/config.
+# awsume assumes the account role (creds into the shell env), then switch kube
+# context. EKS exec uses those ambient creds — one account per shell at a time.
 LoadManagementDevOpsEnvironment() {
-  LoadDevOpsEnvironment '-management'
+  unset KUBECONFIG
+  source awsume management-k8s && kubectl config use-context management
 }
 
 LoadStagingDevOpsEnvironment() {
-  LoadDevOpsEnvironment '-staging'
+  unset KUBECONFIG
+  source awsume staging-k8s && kubectl config use-context staging-eu
 }
 
 LoadProductionDevOpsEnvironment() {
-  LoadDevOpsEnvironment '-production'
+  unset KUBECONFIG
+  source awsume production-k8s && kubectl config use-context production-eu
 }
 
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
