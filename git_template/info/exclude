@@ -15,7 +15,7 @@
 **/.claude/agent-memory-local
 **/.claude/first-run
 **/.claude/assistant-daemon-state.json
-.claude/worktrees/
-.agents/debug-sessions/
-.agents/handoffs/
-.agents/plans/
+**/.claude/worktrees/
+**/.agents/debug-sessions/
+**/.agents/handoffs/
+**/.agents/plans/
