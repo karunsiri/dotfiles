@@ -4,4 +4,4 @@ flux2 2.5.1
 golang 1.22.3
 k9s 0.51.0
 kubectl 1.33.2
-lazygit 0.62.2
+lazygit 0.66.2
